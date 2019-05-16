@@ -1,0 +1,17 @@
+[{
+  "anneeVente": 2019,
+  "id": 1,
+  "utilisateur": {
+    "age": 0,
+    "id": 0,
+    "nom": "string",
+    "prenom": "ee"
+  },
+  "voiture": {
+    "anneeMiseEnCirculation": 0,
+    "couleur": "string",
+    "id": 0,
+    "marque": "string",
+    "prix": 2.3
+  }
+}]

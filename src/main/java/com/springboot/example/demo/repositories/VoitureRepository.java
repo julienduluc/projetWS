@@ -1,16 +1,14 @@
 package com.springboot.example.demo.repositories;
 
-import com.springboot.example.demo.entities.Voiture;
 import com.springboot.example.demo.entities.VoitureOccasion;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public interface VoitureRepository {
-	VoitureOccasion getVoitureById(int voitureId);
-    void addVoiture(VoitureOccasion voiture);
-    void addVoitures(List<VoitureOccasion> voitures);
-    List<VoitureOccasion> getAllVoitures();
-    void deleteVoiture(int voitureId);
-    void viderListeVoiture();
+	List<VoitureOccasion> findAll();
+	VoitureOccasion findById(int id);
+	VoitureOccasion saveVoitureOccasion(VoitureOccasion voitureOccasion);
+	void saveVoituresOccasion(List<VoitureOccasion> voitureOccasion);
+	void deleteVoitureOccasion(int id);
 }

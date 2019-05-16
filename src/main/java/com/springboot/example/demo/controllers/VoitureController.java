@@ -22,6 +22,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.springboot.example.demo.config.RoutesApi;
 import com.springboot.example.demo.entities.Voiture;
 import com.springboot.example.demo.entities.VoitureOccasion;
 import com.springboot.example.demo.services.VoitureOccasionServiceImpl;
@@ -31,6 +32,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
+@RequestMapping(RoutesApi.BASE_URL_VOITURES)
 @Api(tags = "Voiture Controller")
 public class VoitureController {
 
@@ -39,83 +41,52 @@ public class VoitureController {
     @Autowired
     public VoitureController(final VoitureOccasionServiceImpl voitureService){
         this.voitureService = voitureService;
-        
-        ObjectMapper mapper = new ObjectMapper();
-        
-        VoitureOccasion vo = new VoitureOccasion();
-        vo.setId(9696);
-        vo.setMarque("jjj");
-        vo.setPrix(3.22);
-        vo.setAnneeMiseEnCirculation(2130);
-        vo.setCouleur("rouge");
-        
-        ArrayList<VoitureOccasion> listeVoitures = new ArrayList<VoitureOccasion>();
-        
-        
-        
-        try {
-			reloadListeVoiture();
-			
-			
-			listeVoitures.add(vo);
-			mapper.writerWithDefaultPrettyPrinter().writeValue(new File("datas/voitureOccasion.json"), listeVoitures);
-			
-		} catch (JsonParseException e) {			
-			e.printStackTrace();
-		} catch (JsonMappingException e) {			
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} 
-        
     }
 
-    @GetMapping(value = "/voiture/{voitureId}")
+    @GetMapping(value = "/{voitureId}")
     @ResponseBody
     @ApiOperation(value = "Récupère une voiture via son ID")
-    VoitureOccasion getVoitureById(@PathVariable final Integer voitureId) {
-    	reloadListeVoiture();
-        return this.voitureService.getVoitureById(voitureId);
+    VoitureOccasion getVoitureById(@PathVariable final int id) {
+        return this.voitureService.findById(id);
     }
 
-    @GetMapping(value = "/voitures")
+    @GetMapping()
     @ResponseBody
     @ApiOperation(value = "Récupère toutes les voitures")
     List<VoitureOccasion> getAllVoitures() {
-    	reloadListeVoiture();
-        return this.voitureService.getAllVoitures();
+        return this.voitureService.findAllVoitures();
     }
 
-    @PostMapping(value = "/voiture")
+    @PostMapping()
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Ajoute une voiture dans le catalogue")
     void addVoiture(@RequestBody VoitureOccasion voiture){
-        this.voitureService.addVoiture(voiture);
+        this.voitureService.saveVoitureOccasion(voiture);
     }
     
-    @DeleteMapping(value = "/voiture/{voitureId}")
+    @DeleteMapping("/{voitureId}")
     @ResponseBody
     @ApiOperation(value = "Supprime une voiture dans le catalogue")
-    void deleteVoitureById(@PathVariable final Integer voitureId){
-        this.voitureService.deleteVoiture(voitureId);
+    void deleteVoitureById(@PathVariable final int id){
+        this.voitureService.deleteVoiture(id);
     }
     
-    void reloadListeVoiture() {
+    /*void reloadListeVoiture() {
     	ArrayList<VoitureOccasion> listeVoitures = new ArrayList<VoitureOccasion>();
     	ObjectMapper mapper = new ObjectMapper();
     	
     	try {
-    	listeVoitures = mapper.readValue(new File("datas/voitureOccasion.json"), new TypeReference<ArrayList<VoitureOccasion>>() {});
-		
-		voitureService.viderListeVoiture();
-		voitureService.addVoitures(listeVoitures);
-		
-    	} catch (JsonParseException e) {			
-			e.printStackTrace();
-		} catch (JsonMappingException e) {			
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+	    	listeVoitures = mapper.readValue(new File("datas/voitureOccasion.json"), new TypeReference<ArrayList<VoitureOccasion>>() {});
+			
+			voitureService.viderListeVoiture();
+			voitureService.addVoitures(listeVoitures);
+			
+	    	} catch (JsonParseException e) {			
+				e.printStackTrace();
+			} catch (JsonMappingException e) {			
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
 		} 
-    }
+    }*/
 }
