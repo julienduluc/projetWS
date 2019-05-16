@@ -1,12 +1,10 @@
 package com.springboot.example.demo.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.springboot.example.demo.entities.Voiture;
 import com.springboot.example.demo.entities.VoitureOccasion;
 import com.springboot.example.demo.repositories.VoitureRepository;
 
@@ -21,33 +19,30 @@ public class VoitureOccasionServiceImpl implements VoitureService {
 	    }
 
 	    @Override
-	    public VoitureOccasion getVoitureById(int voitureId) {
-	        return this.voitureRepository.getVoitureById(voitureId);
-	    }
-
-	    @Override
-	    public void addVoiture(VoitureOccasion voiture) {
-	        this.voitureRepository.addVoiture(voiture);
+	    public void saveVoitureOccasion(VoitureOccasion voiture) {
+	        this.voitureRepository.saveVoitureOccasion(voiture);
 	    }
 	    
 	    @Override
-	    public void addVoitures(ArrayList<VoitureOccasion> voitures) {
-	        this.voitureRepository.addVoitures(voitures);
+	    public void saveVoituresOccasion(List<VoitureOccasion> voitures) {
+	        this.voitureRepository.saveVoituresOccasion(voitures);
 	    }
 
-	    @Override
-	    public List<VoitureOccasion> getAllVoitures() {
-	        return this.voitureRepository.getAllVoitures();
-	    }
 	    
 	    @Override
 	    public void deleteVoiture(int voitureId) {
-	        this.voitureRepository.deleteVoiture(voitureId);
+	        this.voitureRepository.deleteVoitureOccasion(voitureId);
 	    }
 
 		@Override
-		public void viderListeVoiture() {
-			this.voitureRepository.viderListeVoiture();
-			
+		public VoitureOccasion findById(int id) {
+			 return this.voitureRepository.findById(id);
 		}
+
+
+		@Override
+		public List<VoitureOccasion> findAllVoitures() {
+			  return this.voitureRepository.findAll();
+		}
+
 }

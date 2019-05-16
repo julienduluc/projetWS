@@ -8,11 +8,10 @@ import com.springboot.example.demo.entities.VoitureOccasion;
 
 
 public interface VoitureService {
-	VoitureOccasion getVoitureById(int voitureId);
-    void addVoiture(VoitureOccasion voiture);
-    void addVoitures(ArrayList<VoitureOccasion> voitures);
-    List<VoitureOccasion> getAllVoitures();
-    void deleteVoiture(int voitureId);
-    void viderListeVoiture();
+	VoitureOccasion findById(int id);
+    void saveVoitureOccasion(VoitureOccasion voiture);
+    void saveVoituresOccasion(List<VoitureOccasion> voitures);
+    List<VoitureOccasion> findAllVoitures();
+    void deleteVoiture(int id);
     
 }
