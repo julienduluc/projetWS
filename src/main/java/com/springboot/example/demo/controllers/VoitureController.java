@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,8 +25,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.example.demo.config.RoutesApi;
 import com.springboot.example.demo.entities.Voiture;
-import com.springboot.example.demo.entities.VoitureOccasion;
-import com.springboot.example.demo.services.VoitureOccasionServiceImpl;
+
 import com.springboot.example.demo.services.VoitureServiceImpl;
 
 import io.swagger.annotations.Api;
@@ -36,32 +36,33 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "Voiture Controller")
 public class VoitureController {
 
-	private VoitureOccasionServiceImpl voitureService;
+	private VoitureServiceImpl voitureService;
 
     @Autowired
-    public VoitureController(final VoitureOccasionServiceImpl voitureService){
+    public VoitureController(final VoitureServiceImpl voitureService){
         this.voitureService = voitureService;
     }
 
     @GetMapping(value = "/{voitureId}")
     @ResponseBody
     @ApiOperation(value = "Récupère une voiture via son ID")
-    VoitureOccasion getVoitureById(@PathVariable final int id) {
+    Voiture getVoitureById(@PathVariable final int id) {
         return this.voitureService.findById(id);
     }
 
     @GetMapping()
     @ResponseBody
     @ApiOperation(value = "Récupère toutes les voitures")
-    List<VoitureOccasion> getAllVoitures() {
+    List<Voiture> getAllVoitures(Model model) {
+    	model.addAttribute("catalogue", this.voitureService.findAllVoitures());
         return this.voitureService.findAllVoitures();
     }
 
     @PostMapping()
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Ajoute une voiture dans le catalogue")
-    void addVoiture(@RequestBody VoitureOccasion voiture){
-        this.voitureService.saveVoitureOccasion(voiture);
+    void addVoiture(@RequestBody Voiture voiture){
+        this.voitureService.saveVoiture(voiture);
     }
     
     @DeleteMapping("/{voitureId}")

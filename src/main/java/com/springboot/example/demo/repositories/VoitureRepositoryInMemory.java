@@ -4,29 +4,28 @@ package com.springboot.example.demo.repositories;
 import org.springframework.stereotype.Repository;
 
 import com.springboot.example.demo.entities.Voiture;
-import com.springboot.example.demo.entities.VoitureOccasion;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class VoitureRepositoryInMemory implements VoitureRepository {
-    private List<VoitureOccasion> voitures;
+    private List<Voiture> voitures;
 
 
     public VoitureRepositoryInMemory() {
-        this.voitures = new ArrayList<VoitureOccasion>();
+        this.voitures = new ArrayList<Voiture>();
     }
 
 
 	@Override
-	public List<VoitureOccasion> findAll() {
+	public List<Voiture> findAll() {
 		return this.voitures;
 	}
 
 	@Override
-	public VoitureOccasion findById(int id) {
-		for(VoitureOccasion b : this.voitures){
+	public Voiture findById(int id) {
+		for(Voiture b : this.voitures){
             if(b.getId() == id) return b;
         }
 
@@ -34,20 +33,20 @@ public class VoitureRepositoryInMemory implements VoitureRepository {
 	}
 
 	@Override
-	public VoitureOccasion saveVoitureOccasion(VoitureOccasion voitureOccasion) {
-		this.voitures.add(voitureOccasion);
-		return voitureOccasion;
+	public Voiture saveVoiture(Voiture voiture) {
+		this.voitures.add(voiture);
+		return voiture;
 	}
 
 	@Override
-	public void saveVoituresOccasion(List<VoitureOccasion> voitureOccasion) {
-		 this.voitures = new ArrayList<VoitureOccasion>(voitures);
+	public void saveVoitures(List<Voiture> voiture) {
+		 this.voitures = new ArrayList<Voiture>(voitures);
 		
 	}
 
 	@Override
-	public void deleteVoitureOccasion(int id) {
-		for(VoitureOccasion b : this.voitures){
+	public void deleteVoiture(int id) {
+		for(Voiture b : this.voitures){
 			 
             if(b.getId() == id) {
             	int i = this.voitures.indexOf(b);

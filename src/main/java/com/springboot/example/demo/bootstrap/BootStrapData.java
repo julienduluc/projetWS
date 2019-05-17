@@ -13,7 +13,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.example.demo.entities.Vente;
-import com.springboot.example.demo.entities.VoitureOccasion;
+import com.springboot.example.demo.entities.Voiture;
 import com.springboot.example.demo.repositories.VenteRepository;
 import com.springboot.example.demo.repositories.VoitureRepository;
 
@@ -33,13 +33,13 @@ public class BootStrapData implements CommandLineRunner {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		List<Vente> listeVentes = new ArrayList<Vente>();
-		List<VoitureOccasion> listeVoitureOccasion = new ArrayList<VoitureOccasion>();
+		List<Voiture> listeVoiture = new ArrayList<Voiture>();
 		
     	try {
     		listeVentes = mapper.readValue(new File("datas/ventes.json"), new TypeReference<List<Vente>>() {});
-    		listeVoitureOccasion = mapper.readValue(new File("datas/voitureOccasion.json"), new TypeReference<List<VoitureOccasion>>() {});
+    		listeVoiture = mapper.readValue(new File("datas/voiture.json"), new TypeReference<List<Voiture>>() {});
     		venteRepository.saveVentes(listeVentes);
-    		voitureRepository.saveVoituresOccasion(listeVoitureOccasion);
+    		voitureRepository.saveVoitures(listeVoiture);
 			
     		
     		// 	mapper.writerWithDefaultPrettyPrinter().writeValue(new File("datas/voitureOccasion.json"), listeVoitures);

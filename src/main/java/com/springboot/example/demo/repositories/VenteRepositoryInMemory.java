@@ -2,7 +2,6 @@ package com.springboot.example.demo.repositories;
 
 import org.springframework.stereotype.Repository;
 import com.springboot.example.demo.entities.Vente;
-import com.springboot.example.demo.entities.VoitureOccasion;
 
 import java.util.ArrayList;
 import java.util.List;
