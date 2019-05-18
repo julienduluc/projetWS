@@ -1,12 +1,13 @@
 package com.springboot.example.demo.services;
 
-import java.util.List;
+import java.util.Collection;
 
 import com.springboot.example.demo.entities.Vente;
 
 public interface VenteService {
     Vente getVenteById(int id);
-    List<Vente> findAllVentes();
+    Collection<Vente> findAllVentes();
     Vente saveVente(Vente vente);
-    
+    Collection<Vente> getVentesByMarque(String marque);
+    Collection<Vente> getVentesByAnnee(Integer annee);
 }
