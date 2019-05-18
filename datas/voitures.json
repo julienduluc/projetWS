@@ -1,0 +1,62 @@
+[
+{
+"id":"1",
+"marque":"Renault",
+"modele":"106",
+"prix": 12300.00,
+"couleur": "rouge",
+"anneeSortie" : 1997,
+"gps" : true,
+"climatisation" : true
+},
+{
+"id":"2",
+"marque":"Peugeot",
+"modele":"308",
+"prix": 191110.00,
+"couleur": "rose",
+"anneeSortie" : 2001,
+"gps" : false,
+"climatisation" : true
+},
+{
+"id":"3",
+"marque":"Renault",
+"modele":"Clio",
+"prix": 23000.00,
+"couleur": "noire",
+"anneeSortie" : 2006,
+"gps" : true,
+"climatisation" : false
+},
+{
+"id":"4",
+"marque":"Subaru",
+"modele":"impreza",
+"prix": 87000.00,
+"couleur": "bleu et jaune",
+"anneeSortie" : 1998,
+"gps" : false,
+"climatisation" : false
+},
+{
+"id":"5",
+"marque":"Opel",
+"modele":"Corsa",
+"prix": 10000.00,
+"couleur": "noir",
+"anneeSortie" : 2004,
+"gps" : true,
+"climatisation" : false
+},
+{
+"id":"6",
+"marque":"Mazda",
+"modele":"break",
+"prix": 37800.00,
+"couleur": "vert kaki",
+"anneeSortie" : 2002,
+"gps" : true,
+"climatisation" : true
+}
+]

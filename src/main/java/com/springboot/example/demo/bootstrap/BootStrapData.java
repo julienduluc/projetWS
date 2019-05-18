@@ -7,11 +7,13 @@ import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.springboot.example.demo.config.RoutesApi;
 import com.springboot.example.demo.entities.Vente;
 import com.springboot.example.demo.entities.Voiture;
 import com.springboot.example.demo.repositories.VenteRepository;
@@ -35,9 +37,10 @@ public class BootStrapData implements CommandLineRunner {
 		List<Vente> listeVentes = new ArrayList<Vente>();
 		List<Voiture> listeVoiture = new ArrayList<Voiture>();
 		
+
     	try {
     		listeVentes = mapper.readValue(new File("datas/ventes.json"), new TypeReference<List<Vente>>() {});
-    		listeVoiture = mapper.readValue(new File("datas/voiture.json"), new TypeReference<List<Voiture>>() {});
+    		listeVoiture = mapper.readValue(new File("datas/voitures.json"), new TypeReference<List<Voiture>>() {});
     		venteRepository.saveVentes(listeVentes);
     		voitureRepository.saveVoitures(listeVoiture);
 			
