@@ -8,10 +8,13 @@
     "prenom": "ee"
   },
   "voiture": {
-    "anneeMiseEnCirculation": 0,
-    "couleur": "string",
-    "id": 0,
-    "marque": "string",
-    "prix": 2.3
-  }
+	"id": 1,
+	"marque": "Renault",
+	"modele": "Clio",
+	"prix": 200.00,
+	"couleur": "rouge",
+	"anneeSortie": 2018,
+	"gps": true,
+	"climatisation": false
+}
 }]

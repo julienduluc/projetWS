@@ -1,10 +1,8 @@
 package com.springboot.example.demo.repositories;
 
-import com.springboot.example.demo.entities.Vente;
-import com.springboot.example.demo.entities.Voiture;
-
-import java.util.ArrayList;
 import java.util.List;
+
+import com.springboot.example.demo.entities.Vente;
 
 
 public interface VenteRepository {

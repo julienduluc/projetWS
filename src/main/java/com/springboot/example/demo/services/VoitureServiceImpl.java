@@ -1,6 +1,6 @@
 package com.springboot.example.demo.services;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,33 +21,26 @@ public class VoitureServiceImpl implements VoitureService {
 
 		@Override
 		public Voiture findById(Integer id) {
-			// TODO Auto-generated method stub
-			return null;
+			return voitureRepository.findById(id);
 		}
 
 		@Override
 		public void saveVoiture(Voiture voiture) {
-			// TODO Auto-generated method stub
-			
+			this.voitureRepository.saveVoiture(voiture);			
 		}
 
 		@Override
 		public void saveVoitures(List<Voiture> voitures) {
-			// TODO Auto-generated method stub
-			
+			this.voitureRepository.saveVoitures(voitures);			
 		}
 
 		@Override
-		public List<Voiture> findAllVoitures() {
-			// TODO Auto-generated method stub
-			return null;
+		public Collection<Voiture> findAllVoitures() {
+			return voitureRepository.findAll();
 		}
 
 		@Override
 		public void deleteVoiture(Integer id) {
-			// TODO Auto-generated method stub
-			
-		}
-
-	   
+			voitureRepository.deleteVoiture(id);			
+		}	   
 }

@@ -1,10 +1,11 @@
 package com.springboot.example.demo.repositories;
 
-import org.springframework.stereotype.Repository;
-import com.springboot.example.demo.entities.Vente;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.springboot.example.demo.entities.Vente;
 
 
 @Repository
