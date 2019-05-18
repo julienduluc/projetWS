@@ -1,6 +1,6 @@
 package com.springboot.example.demo.services;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.springframework.stereotype.Service;
 
@@ -22,12 +22,22 @@ public class VenteServiceImpl implements VenteService {
 	}
 
 	@Override
-	public List<Vente> findAllVentes() {
+	public Collection<Vente> findAllVentes() {
 		return venteRepository.findAll();
 	}
 
 	@Override
 	public Vente saveVente(Vente vente) {
 		 return venteRepository.saveVente(vente);		
+	}
+
+	@Override
+	public Collection<Vente> getVentesByMarque(String marque) {
+		return venteRepository.getVentesByMarque(marque);
+	}
+
+	@Override
+	public Collection<Vente> getVentesByAnnee(Integer annee) {
+		return venteRepository.getVentesByAnnee(annee);
 	}	
 }

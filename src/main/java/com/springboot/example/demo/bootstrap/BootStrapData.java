@@ -7,13 +7,11 @@ import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.springboot.example.demo.config.RoutesApi;
 import com.springboot.example.demo.entities.Vente;
 import com.springboot.example.demo.entities.Voiture;
 import com.springboot.example.demo.repositories.VenteRepository;

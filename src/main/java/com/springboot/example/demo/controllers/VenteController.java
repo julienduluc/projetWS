@@ -1,6 +1,6 @@
 package com.springboot.example.demo.controllers;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,7 +39,7 @@ public class VenteController {
 
     @GetMapping()
     @ApiOperation(value = "Récupère toutes les ventes")
-    List<Vente> getAllVentes() {
+    Collection<Vente> getAllVentes() {
         return this.venteService.findAllVentes();
     }
 
@@ -58,22 +58,15 @@ public class VenteController {
 		}*/
     }
    
+    @GetMapping(value = "/marque/{marque}")
+    @ApiOperation(value = "Récupère les ventes d'une marque")
+    Collection<Vente> getVentesByMarque(@PathVariable final String marque) {
+        return this.venteService.getVentesByMarque(marque);
+    }
     
-   /* void reloadListeVentes() {
-    	ArrayList<Vente> listeVentes = new ArrayList<Vente>();
-    	ObjectMapper mapper = new ObjectMapper();
-    	
-    	try {
-    		listeVentes = mapper.readValue(new File("datas/ventes.json"), new TypeReference<ArrayList<Vente>>() {});
-			
-    		venteService.addVentes(listeVentes);
-			
-	    	} catch (JsonParseException e) {			
-				e.printStackTrace();
-			} catch (JsonMappingException e) {			
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-		} 
-    }*/
+    @GetMapping(value = "/annee/{annee}")
+    @ApiOperation(value = "Récupère les ventes d'une année")
+    Collection<Vente> getVentesByAnnee(@PathVariable final Integer annee) {
+        return this.venteService.getVentesByAnnee(annee);
+    }
 }
