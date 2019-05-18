@@ -1,8 +1,6 @@
 package com.springboot.example.demo.controllers;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.example.demo.config.RoutesApi;
 import com.springboot.example.demo.entities.Voiture;
 
@@ -43,18 +35,17 @@ public class VoitureController {
         this.voitureService = voitureService;
     }
 
-    @GetMapping(value = "/{voitureId}")
+    @GetMapping(value = "/{id}")
     @ResponseBody
     @ApiOperation(value = "Récupère une voiture via son ID")
-    Voiture getVoitureById(@PathVariable final int id) {
+    Voiture getVoitureById(@PathVariable final Integer id) {
         return this.voitureService.findById(id);
     }
 
     @GetMapping()
     @ResponseBody
     @ApiOperation(value = "Récupère toutes les voitures")
-    List<Voiture> getAllVoitures(Model model) {
-    	model.addAttribute("catalogue", this.voitureService.findAllVoitures());
+    Collection<Voiture> getAllVoitures(Model model) {
         return this.voitureService.findAllVoitures();
     }
 
@@ -71,6 +62,8 @@ public class VoitureController {
     void deleteVoitureById(@PathVariable final int id){
         this.voitureService.deleteVoiture(id);
     }
+    
+
     
     /*void reloadListeVoiture() {
     	ArrayList<VoitureOccasion> listeVoitures = new ArrayList<VoitureOccasion>();

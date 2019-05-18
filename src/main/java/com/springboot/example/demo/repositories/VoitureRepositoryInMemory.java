@@ -1,60 +1,52 @@
 package com.springboot.example.demo.repositories;
 
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Repository;
 
 import com.springboot.example.demo.entities.Voiture;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Repository
 public class VoitureRepositoryInMemory implements VoitureRepository {
-    private List<Voiture> voitures;
+    private Map<Integer, Voiture> voitures;
 
 
     public VoitureRepositoryInMemory() {
-        this.voitures = new ArrayList<Voiture>();
+        this.voitures = new HashMap<>();
     }
 
 
 	@Override
-	public List<Voiture> findAll() {
-		return this.voitures;
+	public Collection<Voiture> findAll() {
+		return this.voitures.values();
 	}
 
 	@Override
 	public Voiture findById(int id) {
-		for(Voiture b : this.voitures){
-            if(b.getId() == id) return b;
-        }
-
-        return null;
+        return voitures.get(id);
 	}
 
 	@Override
 	public Voiture saveVoiture(Voiture voiture) {
-		this.voitures.add(voiture);
+		int i = voitures.size() + 1;
+		voiture.setId(i);
+		this.voitures.put(i, voiture);
 		return voiture;
 	}
 
 	@Override
-	public void saveVoitures(List<Voiture> voiture) {
-		 this.voitures = new ArrayList<Voiture>(voitures);
-		
+	public void saveVoitures(List<Voiture> voitures) {		 
+		 for(Voiture v : voitures) {
+			 this.voitures.put(v.getId(), v);
+		 }		
 	}
 
 	@Override
 	public void deleteVoiture(int id) {
-		for(Voiture b : this.voitures){
-			 
-            if(b.getId() == id) {
-            	int i = this.voitures.indexOf(b);
-            	this.voitures.remove(i);
-            }
-        }
-		
-	}
-
-    
+		voitures.remove(id);		
+	}    
 }
