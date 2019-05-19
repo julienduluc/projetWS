@@ -1,6 +1,8 @@
 package com.springboot.example.demo.controllers;
 
 import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.springboot.example.demo.config.RoutesApi;
 import com.springboot.example.demo.entities.Voiture;
@@ -44,8 +47,9 @@ public class VoitureController {
     @GetMapping()
     @ResponseBody
     @ApiOperation(value = "Récupère toutes les voitures")
-    Collection<Voiture> getAllVoitures(Model model) {
+    Collection<Voiture> getAllVoitures() {
         return this.voitureService.findAllVoitures();
+        
     }
 
     @PostMapping()
@@ -62,7 +66,7 @@ public class VoitureController {
         this.voitureService.deleteVoiture(id);
     }
     
-
+	
     
     /*void reloadListeVoiture() {
     	ArrayList<VoitureOccasion> listeVoitures = new ArrayList<VoitureOccasion>();
