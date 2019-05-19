@@ -9,6 +9,7 @@ public class Voiture {
 	private Integer anneeSortie;
 	private boolean gps;
 	private boolean climatisation;
+	private String photo;
 	
 	public Integer getId() {
 		return id;
@@ -57,6 +58,12 @@ public class Voiture {
 	}
 	public void setClimatisation(boolean climatisation) {
 		this.climatisation = climatisation;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 	
 }

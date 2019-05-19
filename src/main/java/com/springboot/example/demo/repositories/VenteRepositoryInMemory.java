@@ -2,6 +2,7 @@ package com.springboot.example.demo.repositories;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -80,6 +81,19 @@ public class VenteRepositoryInMemory implements VenteRepository {
 		return liste.values();
 	}
 
+	@Override
+	public double getTotalCAByAnnee(Integer annee) {
+		Iterator<Integer> i = ventes.keySet().iterator();
+		double total = 0;
+		
+		while (i.hasNext()) {			
+			Integer tmp = i.next();
+			if (ventes.get(tmp).getAnneeVente() == annee) {
+				total += ventes.get(tmp).getVoiture().getPrix();
+			}
+		}
+		return total;
+	}
 
 
 }
