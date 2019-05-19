@@ -69,4 +69,10 @@ public class VenteController {
     Collection<Vente> getVentesByAnnee(@PathVariable final Integer annee) {
         return this.venteService.getVentesByAnnee(annee);
     }
+    
+    @GetMapping(value = "/chiffre_affaire/{annee}")
+    @ApiOperation(value = "Récupère le chiffre d'affaire d'une année")
+    double getTotalCAByAnnee(@PathVariable final Integer annee) {
+        return this.venteService.getTotalCAByAnnee(annee);
+    }
 }

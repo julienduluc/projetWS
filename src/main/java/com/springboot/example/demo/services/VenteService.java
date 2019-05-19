@@ -10,4 +10,5 @@ public interface VenteService {
     Vente saveVente(Vente vente);
     Collection<Vente> getVentesByMarque(String marque);
     Collection<Vente> getVentesByAnnee(Integer annee);
+    double getTotalCAByAnnee(Integer annee);
 }

@@ -15,4 +15,5 @@ public interface VenteRepository {
 	void deleteVente(int id);
 	Collection<Vente> getVentesByMarque(String marque);
 	Collection<Vente> getVentesByAnnee(Integer annee);
+	double getTotalCAByAnnee(Integer annee);
 }

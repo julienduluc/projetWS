@@ -32,8 +32,8 @@ public class BootStrapData implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		ObjectMapper mapper = new ObjectMapper();
-		List<Vente> listeVentes = new ArrayList<Vente>();
-		List<Voiture> listeVoiture = new ArrayList<Voiture>();
+		List<Vente> listeVentes = new ArrayList<>();
+		List<Voiture> listeVoiture = new ArrayList<>();
 		
 
     	try {
