@@ -4,4 +4,6 @@ public class RoutesApi {
 
 	public static final String BASE_URL_VOITURES = "/voitures";
 	public static final String BASE_URL_VENTES = "/ventes";
+	
+	public static final String BASE_URL_VOITURES_ADMIN = "/admin/voitures";
 }

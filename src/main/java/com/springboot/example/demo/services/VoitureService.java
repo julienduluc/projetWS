@@ -13,4 +13,5 @@ public interface VoitureService {
     Collection<Voiture> findAllVoitures();
     void deleteVoiture(Integer id);
     Collection<Voiture> rechercheVoitures(String marque, String modele, String prixMin, String prixMax);
+    Voiture editVoiturePrix(int id, String prix);
 }
