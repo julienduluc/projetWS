@@ -7,9 +7,9 @@
 "couleur": "rouge",
 "anneeSortie" : 1997,
 "gps" : true,
-"climatisation" : true
-},
-{
+"climatisation" : true,
+"photo": "scalian.png"
+},{
 "id":"2",
 "marque":"Peugeot",
 "modele":"308",
@@ -18,8 +18,8 @@
 "anneeSortie" : 2001,
 "gps" : false,
 "climatisation" : true
-},
-{
+,"photo": "scalian.png"
+},{
 "id":"3",
 "marque":"Renault",
 "modele":"Clio",
@@ -28,8 +28,8 @@
 "anneeSortie" : 2006,
 "gps" : true,
 "climatisation" : false
-},
-{
+,"photo": "scalian.png"
+},{
 "id":"4",
 "marque":"Subaru",
 "modele":"impreza",
@@ -38,8 +38,8 @@
 "anneeSortie" : 1998,
 "gps" : false,
 "climatisation" : false
-},
-{
+,"photo": "scalian.png"
+},{
 "id":"5",
 "marque":"Opel",
 "modele":"Corsa",
@@ -48,8 +48,8 @@
 "anneeSortie" : 2004,
 "gps" : true,
 "climatisation" : false
-},
-{
+,"photo": "scalian.png"
+},{
 "id":"6",
 "marque":"Mazda",
 "modele":"break",
@@ -58,5 +58,5 @@
 "anneeSortie" : 2002,
 "gps" : true,
 "climatisation" : true
-}
-]
+,"photo": "scalian.png"
+}]

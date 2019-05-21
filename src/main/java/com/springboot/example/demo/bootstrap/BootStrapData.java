@@ -3,8 +3,10 @@ package com.springboot.example.demo.bootstrap;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -42,7 +44,7 @@ public class BootStrapData implements CommandLineRunner {
     		venteRepository.saveVentes(listeVentes);
     		voitureRepository.saveVoitures(listeVoiture);
 			
-    		
+    		fileToBase64StringConversion();
     		// 	mapper.writerWithDefaultPrettyPrinter().writeValue(new File("datas/voitureOccasion.json"), listeVoitures);
 	    	} catch (JsonParseException e) {			
 				e.printStackTrace();
@@ -53,5 +55,9 @@ public class BootStrapData implements CommandLineRunner {
 		} 
 		
 	}
+	
+	public void fileToBase64StringConversion() throws IOException {
+    
+    }
 
 }
