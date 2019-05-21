@@ -1,14 +1,20 @@
 package com.springboot.example.demo.controllers;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +29,7 @@ import com.springboot.example.demo.services.VoitureServiceImpl;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
+import sun.misc.BASE64Decoder;
 @RestController
 @RequestMapping(RoutesApi.BASE_URL_VOITURES)
 @Api(tags = "Voiture Controller")
@@ -67,7 +73,13 @@ public class VoitureController {
         this.voitureService.deleteVoiture(id);
     }
        
-	
+    @PatchMapping("/{voitureId}")
+    @ResponseBody
+    @ApiOperation(value = "Modifie le prix d'une voiture")
+    Voiture patchVoiture(@PathVariable final int id, @RequestParam(value="prix", defaultValue="") String prix) {
+        return this.voitureService.editVoiturePrix(id, prix);
+        
+    }
     
     /*void reloadListeVoiture() {
     	ArrayList<VoitureOccasion> listeVoitures = new ArrayList<VoitureOccasion>();
@@ -86,5 +98,23 @@ public class VoitureController {
 			} catch (IOException e) {
 				e.printStackTrace();
 		} 
+    }*/
+    
+   /* public static String encodeToString(BufferedImage image, String type) {
+        String imageString = null;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+ 
+        try {
+            ImageIO.write(image, type, bos);
+            byte[] imageBytes = bos.toByteArray();
+ 
+            BASE64Encoder encoder = new BASE64Encoder();
+            imageString = encoder.encode(imageBytes);
+ 
+            bos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return imageString;
     }*/
 }
