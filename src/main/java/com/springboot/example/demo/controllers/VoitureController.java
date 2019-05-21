@@ -58,14 +58,14 @@ public class VoitureController {
         this.voitureService.saveVoiture(voiture);
     }
     
-    @DeleteMapping("/{voitureId}")
+    @DeleteMapping("/{id}")
     @ResponseBody
     @ApiOperation(value = "Supprime une voiture dans le catalogue")
     void deleteVoitureById(@PathVariable final int id){
         this.voitureService.deleteVoiture(id);
     }
        
-    @PatchMapping("/{voitureId}")
+    @PatchMapping("/{id}")
     @ResponseBody
     @ApiOperation(value = "Modifie le prix d'une voiture")
     Voiture patchVoiture(@PathVariable final int id, @RequestParam(value="prix", defaultValue="") String prix) {
