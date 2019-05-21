@@ -8,8 +8,10 @@
 <div class="card" th:each="voiture : ${voitures}" >
       <div class="card-body">
               <p class="card-text" th:text="${voiture.getMarque()}"> </p>
+              <img th:src="${voiture.getPhoto()}">
           </div>
          
 </div>
+
 </body>
 </html>
