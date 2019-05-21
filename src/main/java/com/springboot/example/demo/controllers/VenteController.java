@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,11 +38,11 @@ public class VenteController {
         return this.venteService.getVenteById(id);
     }
 
-    @GetMapping()
+    /*@GetMapping()
     @ApiOperation(value = "Récupère toutes les ventes")
     Collection<Vente> getAllVentes() {
         return this.venteService.findAllVentes();
-    }
+    }*/
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
@@ -75,4 +76,12 @@ public class VenteController {
     double getTotalCAByAnnee(@PathVariable final Integer annee) {
         return this.venteService.getTotalCAByAnnee(annee);
     }
+    
+    @GetMapping(value = "/stats")
+    @ApiOperation(value = "Filtre les ventes par marque et par année")
+    Collection<Vente> rechercheVentes(@RequestParam(value="marque", defaultValue="") String marque,
+    		@RequestParam(value="annee", defaultValue="2019") String annee) {
+        return this.venteService.rechercheVentes(marque, annee);
+    }
+    
 }

@@ -96,4 +96,18 @@ public class VenteRepositoryInMemory implements VenteRepository {
 	}
 
 
+	@Override
+	public Collection<Vente> rechercheVentes(String marque, String annee) {
+		Map<Integer, Vente> liste = new HashMap<>();
+		
+		ventes.forEach((v, k) -> {
+			if (k.getAnneeVente() == Integer.parseInt(annee) && (k.getVoiture().getMarque().equals(marque) || marque.equals(""))) {	
+				liste.put(k.getId(), k);	
+			}
+						
+		});
+		return liste.values();
+	}
+
+
 }
