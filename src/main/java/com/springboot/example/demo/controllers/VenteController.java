@@ -1,6 +1,8 @@
 package com.springboot.example.demo.controllers;
 
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.example.demo.config.RoutesApi;
 import com.springboot.example.demo.entities.Vente;
+import com.springboot.example.demo.entities.Voiture;
 import com.springboot.example.demo.services.VenteServiceImpl;
+import com.springboot.example.demo.services.VoitureServiceImpl;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,6 +30,7 @@ import io.swagger.annotations.ApiOperation;
 public class VenteController {
 
 	private VenteServiceImpl venteService;
+	private VoitureServiceImpl voitureService;
 
     @Autowired
     public VenteController(final VenteServiceImpl venteService){
@@ -48,7 +53,10 @@ public class VenteController {
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Ajoute une vente")
     Vente saveVente(@RequestBody Vente vente){
-    	
+    	System.out.println("veente : " + vente.getVoiture().getId());
+    	Voiture v = voitureService.findById(vente.getVoiture().getId());
+    	vente.setVoiture(v);
+    	vente.setAnneeVente(Calendar.YEAR);
         return this.venteService.saveVente(vente);
       /*  ObjectMapper mapper = new ObjectMapper();
         try {
