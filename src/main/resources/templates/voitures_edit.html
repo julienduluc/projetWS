@@ -6,18 +6,13 @@
 </head>
 <body>
 	<div class="card">
-		<form action="#" th:action="@{${action}}" th:object="${voiture}"method="post">
+		<form action="#" th:action="@{./admin/voitures/edit}" th:object="${voiture}" method="post">
 			
-				IDd: <input disabled type="text" th:field="*{id}" /></br>
+				ID: <input  type="text" th:field="*{id}" /></br>
 				Marque : <input disabled type="text" th:field="*{marque}" /></br>
 				Modele : <input disabled type="text" th:field="*{modele}" /></br>
 				Couleur : <input disabled type="text" th:field="*{couleur}" /></br>
 				Prix : <input  type="text" th:field="*{prix}" /></br>
-				Annee de sortie : <input  disabled type="text" th:field="*{anneeSortie}" /></br>
-				GPS : <input disabled type="text" th:field="*{gps}" /></br>
-				Climatisation : <input disabled type="text" th:field="*{climatisation}" /></br>
-				Photo : <input disabled type="text" th:field="*{photo}" /></br>
-				
 				<input type="submit" value="Submit" /> <input type="reset" value="Reset" />
 		</form>
 	</div>
