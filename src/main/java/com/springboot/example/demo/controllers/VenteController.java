@@ -33,8 +33,9 @@ public class VenteController {
 	private VoitureServiceImpl voitureService;
 
     @Autowired
-    public VenteController(final VenteServiceImpl venteService){
+    public VenteController(final VenteServiceImpl venteService, VoitureServiceImpl voitureService){
         this.venteService = venteService;
+        this.voitureService = voitureService;
     }
 
     @GetMapping(value = "/{id}")
@@ -52,11 +53,11 @@ public class VenteController {
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Ajoute une vente")
-    Vente saveVente(@RequestBody Vente vente){
-    	System.out.println("veente : " + vente.getVoiture().getId());
+    Vente saveVente(@RequestBody Vente vente) {
     	Voiture v = voitureService.findById(vente.getVoiture().getId());
     	vente.setVoiture(v);
-    	vente.setAnneeVente(Calendar.YEAR);
+    	Calendar calendar = Calendar.getInstance();
+    	vente.setAnneeVente(calendar.get(Calendar.YEAR));
         return this.venteService.saveVente(vente);
       /*  ObjectMapper mapper = new ObjectMapper();
         try {
@@ -85,7 +86,7 @@ public class VenteController {
         return this.venteService.getTotalCAByAnnee(annee);
     }
     
-    @GetMapping(value = "/stats")
+    @GetMapping()
     @ApiOperation(value = "Filtre les ventes par marque et par année")
     Collection<Vente> rechercheVentes(@RequestParam(value="marque", defaultValue="") String marque,
     		@RequestParam(value="annee", defaultValue="2019") String annee) {
