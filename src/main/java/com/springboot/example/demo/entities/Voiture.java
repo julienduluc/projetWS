@@ -10,7 +10,7 @@ public class Voiture {
 	private boolean gps;
 	private boolean climatisation;
 	private String photo;
-	
+	 
 	public Integer getId() {
 		return id;
 	}

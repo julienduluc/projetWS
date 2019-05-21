@@ -37,14 +37,17 @@ public class VoitureControllerAdmin {
     }
 
     @GetMapping()
-    String rechercheVoitures(Model model) {        
-        model.addAttribute("voitures", voitureService.findAllVoitures());
+    String rechercheVoitures(Model model, @RequestParam(value="marque", defaultValue="") String marque, 
+    		@RequestParam(value="modele", defaultValue="") String modele, @RequestParam(value="prixMin", defaultValue="0") String prixMin,
+    		@RequestParam(value="prixMax", defaultValue="1000000000") String prixMax){  
+    	
+        model.addAttribute("voitures", voitureService.rechercheVoitures(marque, modele, prixMin, prixMax));
         return "voitures";
-    }
+    }	
     
-    @GetMapping("/edit")
-    String editVoitures(Model model) {        
-        model.addAttribute("voitures", voitureService.findAllVoitures());
+    @GetMapping("/edit/{voitureId}")
+    String editVoitures(Model model,@PathVariable Integer voitureId) {        
+        model.addAttribute("voiture", voitureService.findById(voitureId));
         return "voitures_edit";
     }
     @PostMapping("/edit")
