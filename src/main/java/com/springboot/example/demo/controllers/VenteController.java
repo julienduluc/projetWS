@@ -1,6 +1,8 @@
 package com.springboot.example.demo.controllers;
 
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.example.demo.config.RoutesApi;
 import com.springboot.example.demo.entities.Vente;
+import com.springboot.example.demo.entities.Voiture;
 import com.springboot.example.demo.services.VenteServiceImpl;
+import com.springboot.example.demo.services.VoitureServiceImpl;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,10 +30,12 @@ import io.swagger.annotations.ApiOperation;
 public class VenteController {
 
 	private VenteServiceImpl venteService;
+	private VoitureServiceImpl voitureService;
 
     @Autowired
-    public VenteController(final VenteServiceImpl venteService){
+    public VenteController(final VenteServiceImpl venteService, VoitureServiceImpl voitureService){
         this.venteService = venteService;
+        this.voitureService = voitureService;
     }
 
     @GetMapping(value = "/{id}")
@@ -47,8 +53,11 @@ public class VenteController {
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Ajoute une vente")
-    Vente saveVente(@RequestBody Vente vente){
-    	
+    Vente saveVente(@RequestBody Vente vente) {
+    	Voiture v = voitureService.findById(vente.getVoiture().getId());
+    	vente.setVoiture(v);
+    	Calendar calendar = Calendar.getInstance();
+    	vente.setAnneeVente(calendar.get(Calendar.YEAR));
         return this.venteService.saveVente(vente);
       /*  ObjectMapper mapper = new ObjectMapper();
         try {
@@ -77,7 +86,7 @@ public class VenteController {
         return this.venteService.getTotalCAByAnnee(annee);
     }
     
-    @GetMapping(value = "/stats")
+    @GetMapping()
     @ApiOperation(value = "Filtre les ventes par marque et par année")
     Collection<Vente> rechercheVentes(@RequestParam(value="marque", defaultValue="") String marque,
     		@RequestParam(value="annee", defaultValue="2019") String annee) {
