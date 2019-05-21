@@ -47,5 +47,10 @@ public class VoitureServiceImpl implements VoitureService {
 		@Override
 		public Collection<Voiture> rechercheVoitures(String marque, String modele, String prixMin, String prixMax) {
 			return voitureRepository.rechercheVoitures(marque, modele, prixMin, prixMax);
+		}
+
+		@Override
+		public Voiture editVoiturePrix(int id, String prix) {
+			return voitureRepository.editVoiturePrix(id, prix);
 		}	   
 }
