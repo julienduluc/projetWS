@@ -1,15 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-<div class="card"  >
-  
-</div>
-
-
-
+	<div class="card">
+		<form action="#" th:action="@{${action}}" th:object="${voiture}"method="post">
+			
+				ID: <input disabled type="text" th:field="*{id}" /></br>
+				Marque : <input disabled type="text" th:field="*{marque}" /></br>
+				Modele : <input disabled type="text" th:field="*{modele}" /></br>
+				Couleur : <input disabled type="text" th:field="*{couleur}" /></br>
+				Prix : <input  type="text" th:field="*{prix}" /></br>
+				Annee de sortie : <input  disabled type="text" th:field="*{anneeSortie}" /></br>
+				GPS : <input disabled type="text" th:field="*{gps}" /></br>
+				Climatisation : <input disabled type="text" th:field="*{climatisation}" /></br>
+				Photo : <input disabled type="text" th:field="*{photo}" /></br>
+				
+				<input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+		</form>
+	</div>
 </body>
 </html>
