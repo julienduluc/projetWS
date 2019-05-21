@@ -42,5 +42,10 @@ public class VoitureServiceImpl implements VoitureService {
 		@Override
 		public void deleteVoiture(Integer id) {
 			voitureRepository.deleteVoiture(id);			
+		}
+
+		@Override
+		public Collection<Voiture> rechercheVoitures(String marque, String modele, String prixMin, String prixMax) {
+			return voitureRepository.rechercheVoitures(marque, modele, prixMin, prixMax);
 		}	   
 }

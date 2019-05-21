@@ -11,4 +11,6 @@ public interface VenteService {
     Collection<Vente> getVentesByMarque(String marque);
     Collection<Vente> getVentesByAnnee(Integer annee);
     double getTotalCAByAnnee(Integer annee);
+    Collection<Vente> rechercheVentes(String marque, String annee);
+    
 }

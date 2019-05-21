@@ -44,5 +44,10 @@ public class VenteServiceImpl implements VenteService {
 	@Override
 	public double getTotalCAByAnnee(Integer annee) {
 		return venteRepository.getTotalCAByAnnee(annee);
+	}
+
+	@Override
+	public Collection<Vente> rechercheVentes(String marque, String annee) {
+		return  venteRepository.rechercheVentes(marque, annee);
 	}	
 }
