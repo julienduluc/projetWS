@@ -8,13 +8,15 @@
     "prenom": "ee"
   },
   "voiture": {
-	"id": 1,
-	"marque": "Renault",
-	"modele": "Clio",
-	"prix": 200.00,
-	"couleur": "rouge",
-	"anneeSortie": 2018,
-	"gps": true,
-	"climatisation": false
-}
+		"id": "5",
+		"marque": "Opel",
+		"modele": "Corsa",
+		"prix": 10000.00,
+		"couleur": "noir",
+		"anneeSortie": 2004,
+		"gps": true,
+		"climatisation": false,
+		"photo": "scalian.png",
+		"description": "L Opel Corsa, premiere petite cylindree de la marque allemande Opel, est une petite voiture 5 places apparue fin 1982 et declinee selon les generations sous plusieurs variantes"
+	}
 }]
