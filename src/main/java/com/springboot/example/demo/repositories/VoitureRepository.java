@@ -11,4 +11,5 @@ public interface VoitureRepository {
 	Voiture saveVoiture(Voiture voiture);
 	void saveVoitures(List<Voiture> voiture);
 	void deleteVoiture(int id);
+	Collection<Voiture> rechercheVoitures(String marque, String modele, String prixMin, String prixMax);
 }
