@@ -47,12 +47,22 @@ public class VoitureControllerAdmin {
     		@RequestParam(value="prixMax", defaultValue="1000000000") String prixMax){  
     	
         model.addAttribute("voitures", voitureService.rechercheVoitures(marque, modele, prixMin, prixMax));
+        
+       
+       
+        
         return "voitures";
     }	
     
     @GetMapping("/edit/{voitureId}")
-    String editVoitures(Model model,@PathVariable Integer voitureId) {        
-        model.addAttribute("voiture", voitureService.findById(voitureId));
+    String editVoitures(Model model,@PathVariable Integer voitureId) {  
+    	Voiture v = voitureService.findById(voitureId);
+        
+    
+		model.addAttribute("voiture", v);
+			
+		
+		 
         return "voitures_edit";
     }
     @PostMapping("/edit")
