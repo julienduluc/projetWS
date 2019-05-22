@@ -50,7 +50,13 @@ public class VoitureServiceImpl implements VoitureService {
 		}
 
 		@Override
+		public Voiture editVoiturePrix(int id, double prix) {
+			return voitureRepository.editVoiturePrix(id, prix);
+		}
+
+		@Override
 		public Voiture editVoiturePrix(int id, String prix) {
 			return voitureRepository.editVoiturePrix(id, prix);
 		}	   
+		
 }

@@ -72,5 +72,13 @@ public class VoitureRepositoryInMemory implements VoitureRepository {
 		v.setPrix(Double.parseDouble(prix));
 		return v;
 	}
+
+
+	@Override
+	public Voiture editVoiturePrix(Integer id, double prix) {
+		Voiture v = findById(id);
+		v.setPrix(prix);
+		return v;
+	}
 	
 }
