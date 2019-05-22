@@ -1,6 +1,10 @@
 package com.springboot.example.demo.controllers;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.example.demo.config.RoutesApi;
 import com.springboot.example.demo.entities.Voiture;
 import com.springboot.example.demo.services.VoitureServiceImpl;
@@ -62,7 +71,20 @@ public class VoitureController {
     @ResponseBody
     @ApiOperation(value = "Supprime une voiture dans le catalogue")
     void deleteVoitureById(@PathVariable final int id){
-        this.voitureService.deleteVoiture(id);
+    	ObjectMapper mapper = new ObjectMapper();
+    	if (reloadListeVoiture(id)) {
+    		this.voitureService.deleteVoiture(id);
+    	}
+    	try {
+			mapper.writerWithDefaultPrettyPrinter().writeValue(new File("datas/voitureOccasion.json"), voitureService.findAllVoitures());
+		} catch (JsonGenerationException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        
     }
        
     @PatchMapping("/{id}")
@@ -73,24 +95,30 @@ public class VoitureController {
         
     }
     
-    /*void reloadListeVoiture() {
-    	ArrayList<VoitureOccasion> listeVoitures = new ArrayList<VoitureOccasion>();
+    boolean reloadListeVoiture(Integer id) {
+    	List<Voiture> listeVoiture = new ArrayList<>();
     	ObjectMapper mapper = new ObjectMapper();
     	
     	try {
-	    	listeVoitures = mapper.readValue(new File("datas/voitureOccasion.json"), new TypeReference<ArrayList<VoitureOccasion>>() {});
-			
-			voitureService.viderListeVoiture();
-			voitureService.addVoitures(listeVoitures);
-			
+    		listeVoiture = mapper.readValue(new File("datas/voitures.json"), new TypeReference<List<Voiture>>() {});
+    		voitureService.saveVoitures(listeVoiture);
+    		if (voitureService.findById(id) != null) {
+    			return true;
+    		} else {
+    			return false;
+    		}
+    		
 	    	} catch (JsonParseException e) {			
 				e.printStackTrace();
+				return false;
 			} catch (JsonMappingException e) {			
 				e.printStackTrace();
+				return false;
 			} catch (IOException e) {
 				e.printStackTrace();
+				return false;
 		} 
-    }*/
+    }
     
    
 }

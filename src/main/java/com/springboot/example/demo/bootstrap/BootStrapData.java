@@ -43,9 +43,6 @@ public class BootStrapData implements CommandLineRunner {
     		listeVoiture = mapper.readValue(new File("datas/voitures.json"), new TypeReference<List<Voiture>>() {});
     		venteRepository.saveVentes(listeVentes);
     		voitureRepository.saveVoitures(listeVoiture);
-			
-    		fileToBase64StringConversion();
-    		// 	mapper.writerWithDefaultPrettyPrinter().writeValue(new File("datas/voitureOccasion.json"), listeVoitures);
 	    	} catch (JsonParseException e) {			
 				e.printStackTrace();
 			} catch (JsonMappingException e) {			
@@ -53,11 +50,5 @@ public class BootStrapData implements CommandLineRunner {
 			} catch (IOException e) {
 				e.printStackTrace();
 		} 
-		
 	}
-	
-	public void fileToBase64StringConversion() throws IOException {
-    
-    }
-
 }

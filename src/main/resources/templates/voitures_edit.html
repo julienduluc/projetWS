@@ -6,14 +6,17 @@
 </head>
 <body>
 	<div class="card">
-		<form action="#" th:action="@{/admin/voitures/edit/}" th:object="${voiture}" method="post">
+		<form action="#" th:action="@{/admin/voitures/edit/}" th:object="${voiture}" method="post" enctype="multipart/form-data">
 			
 				ID: <input  type="text" th:field="*{id}" /></br>
 				Marque : <input disabled type="text" th:field="*{marque}" /></br>
 				Modele : <input disabled type="text" th:field="*{modele}" /></br>
 				Couleur : <input disabled type="text" th:field="*{couleur}" /></br>
 				Prix : <input  type="text" th:field="*{prix}" /></br>
+				Photo : <form:label path="file">Select a file to upload</form:label>
+				<input type="file" name="file" />
 				<input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+				
 		</form>
 	</div>
 </body>
