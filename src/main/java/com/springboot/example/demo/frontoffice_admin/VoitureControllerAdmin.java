@@ -3,35 +3,23 @@ package com.springboot.example.demo.frontoffice_admin;
 import java.io.File;
 import java.io.IOException;
 import java.util.Base64;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.springboot.example.demo.config.RoutesApi;
 import com.springboot.example.demo.entities.Voiture;
 import com.springboot.example.demo.services.VoitureServiceImpl;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 
 @Controller
 @RequestMapping(RoutesApi.BASE_URL_VOITURES_ADMIN)
@@ -86,9 +74,9 @@ public class VoitureControllerAdmin {
         return "redirect:/admin/voitures";
     }
     
-    @PostMapping("/create")
+    /*@PostMapping("/create")
     public String createVoiture(@RequestParam("file") MultipartFile file) throws JsonProcessingException  {
     		
         return "redirect:/admin/voitures";
-    }
+    }*/
 }

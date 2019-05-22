@@ -20,7 +20,7 @@ public class HeadersInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(final HttpServletRequest request, final HttpServletResponse response, final Object handler) {
         final Enumeration<String> headers = request.getHeaders("user");
         final List<String> users = Collections.list(headers);
-
+        System.out.println("ok");
         if(!users.isEmpty()){
             String userName = users.get(0);
             this.applicationContext.setUser(userName);
