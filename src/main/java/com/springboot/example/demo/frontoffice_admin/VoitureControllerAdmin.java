@@ -32,14 +32,14 @@ public class VoitureControllerAdmin {
         this.voitureService = voitureService;
     }
 
-    @GetMapping()
+   @GetMapping()
     String rechercheVoitures(Model model, @RequestParam(value="marque", defaultValue="") String marque, 
     		@RequestParam(value="modele", defaultValue="") String modele, @RequestParam(value="prixMin", defaultValue="0") String prixMin,
     		@RequestParam(value="prixMax", defaultValue="1000000000") String prixMax){  
     	
         model.addAttribute("voitures", voitureService.rechercheVoitures(marque, modele, prixMin, prixMax));
         return "voitures";
-    }	
+    }
     
     @GetMapping("/edit/{voitureId}")
     String editVoitures(Model model,@PathVariable Integer voitureId) {  
