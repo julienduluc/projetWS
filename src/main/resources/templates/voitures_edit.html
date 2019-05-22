@@ -6,7 +6,7 @@
 </head>
 <body>
 	<div class="card">
-		<form action="#" th:action="@{./admin/voitures/edit}" th:object="${voiture}" method="post">
+		<form action="#" th:action="@{/admin/voitures/edit/}" th:object="${voiture}" method="post">
 			
 				ID: <input  type="text" th:field="*{id}" /></br>
 				Marque : <input disabled type="text" th:field="*{marque}" /></br>

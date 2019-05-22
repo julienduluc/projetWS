@@ -68,6 +68,6 @@ public class VoitureControllerAdmin {
     public String editVoituresSubmit(@ModelAttribute Voiture voiture) throws JsonProcessingException  {
     		//System.out.println(voiture.getPrix()+ " "+voiture.getId());
     		voitureService.editVoiturePrix(voiture.getId(), voiture.getPrix());
-        return "redirect:/voitures";
+        return "redirect:/admin/voitures";
     }
 }
