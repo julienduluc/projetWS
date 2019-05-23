@@ -24,9 +24,11 @@
 		</div>
 	</nav>
 	<div class="card">
+
 		<form action="#" th:action="@{/admin/voitures/edit/}" th:object="${voiture}" method="post">
 				<input type="hidden" th:field="*{id}" />
-				ICIIIIIIIIII PHOTOOOOOOOOOOO
+				<p>Photo : <form:label path="file"></form:label>
+				<input type="file" name="file" /></p>
 				<p> Marque : <span th:text="${voiture.getMarque()}"></span> </p>
 				<p>Modele : <span th:text="${voiture.getModele()}"></span> </p>
 				<p>Couleur : <span th:text="${voiture.getCouleur()}"></span> </p>
