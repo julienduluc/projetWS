@@ -6,6 +6,7 @@ public class Vente {
 	private int anneeVente;
 	private Utilisateur utilisateur;
 	private Voiture voiture;
+	private String moyenPaiement;
 	
 	
 	public int getId() {
@@ -31,5 +32,11 @@ public class Vente {
 	}
 	public void setVoiture(Voiture voiture) {
 		this.voiture = voiture;
+	}
+	public String getMoyenPaiement() {
+		return moyenPaiement;
+	}
+	public void setMoyenPaiement(String moyenPaiement) {
+		this.moyenPaiement = moyenPaiement;
 	}
 }

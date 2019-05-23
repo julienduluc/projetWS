@@ -23,47 +23,23 @@
 		</span>
 		</div>
 	</nav>
+	<div class="card">
 
-	<div class="container">
-		<div class="row" style="padding: 20px 0 20px 0">
-			<div class="col-md-4"></div>
-			<div class="col-md-4">
-				<button type="button" data-toggle="modal" data-target="#editerModal"
-					class="btn btn-primary">Ajouter une voiture</button>
-				<button type="button" data-toggle="modal" class="btn btn-primary">
-					<a th:href="@{'/admin/ventes'}">
-					Consulter les ventes</i>
-					</a>
-				</button>
-			</div>
-
-			<div class="col-md-4"></div>
-		</div>
-				<form action="#" th:action="@{~/admin/voitures/}"  method="get">
-				 <input  type="text" name="marque" placeholder="Marque"/>
-				 <input  type="text" name="modele" placeholder="Modele" />
-				 <input  type="number" min="1" name="prixMin" placeholder="Prix Minimum" />
-				 <input  type="number" max="100000000" name="prixMax" placeholder="Prix Maximum" />
-				<input type="submit" value="Appliquer" />
+		<form action="#" th:action="@{/admin/voitures/edit/}" th:object="${voiture}" method="post">
+				<input type="hidden" th:field="*{id}" />
+				<p>Photo : <form:label path="file"></form:label>
+				<input type="file" name="file" /></p>
+				<p> Marque : <span th:text="${voiture.getMarque()}"></span> </p>
+				<p>Modele : <span th:text="${voiture.getModele()}"></span> </p>
+				<p>Couleur : <span th:text="${voiture.getCouleur()}"></span> </p>
+				Prix : <input  type="text" th:field="*{prix}" /></br></br>
+				<p>Année de Sortie : <span th:text="${voiture.getAnneeSortie()}"></span> </p>
+				<p>GPS : <span th:text="${voiture.isGps()}"></span> </p>
+				<p>Climatisation : <span th:text="${voiture.isClimatisation()}"></span> </p>
+				
+				<input type="submit" value="Valider" />
 		</form>
-		<div class="row">
-			<div class="col-md-6" th:each="voiture : ${voitures}">
-
-				<img class="img-fluid img-thumbnail" src="./autopsieVol2.jpg">
-
-				<span th:text="${voiture.getMarque()}"></span> | <span
-					th:text="${voiture.getModele()}"></span> | <span
-					th:text="${voiture.getPrix()} + €"></span>
-				<a th:href="@{'/admin/voitures/edit/' + ${voiture.getId()}}">
-					<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-				</a>
-				<a th:href="@{'/admin/voitures/delete/' + ${voiture.getId()}}">
-					<i class="fa fa-trash" aria-hidden="true"></i>
-				</a>
-			</div>
-		</div>
 	</div>
-
 </body>
 <footer class="footer bg-dark">
 	<div class="text-center text-light">© 2019 Copyright Monster
