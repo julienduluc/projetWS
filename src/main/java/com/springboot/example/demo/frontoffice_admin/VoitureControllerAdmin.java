@@ -55,19 +55,27 @@ public class VoitureControllerAdmin {
     @GetMapping("/edit/{voitureId}")
     String editVoitures(Model model,@PathVariable Integer voitureId) {  
     	Voiture v = voitureService.findById(voitureId);
-        
-    
 		model.addAttribute("voiture", v);
-			
-		
-		 
         return "voitures_edit";
     }
     
     @PostMapping("/edit")
     public String editVoituresSubmit(@ModelAttribute Voiture voiture) throws JsonProcessingException  {
-    		//System.out.println(voiture.getPrix()+ " "+voiture.getId());
     		voitureService.editVoiturePrix(voiture.getId(), voiture.getPrix());
+        return "redirect:/admin/voitures";
+    }
+    
+    @GetMapping("/delete/{voitureId}")
+    String deleteVoitures(Model model,@PathVariable Integer voitureId) {  
+    	Voiture v = voitureService.findById(voitureId);
+		model.addAttribute("voiture", v);
+        return "voitures_delete";
+    }
+    
+    @PostMapping("/delete")
+    public String deleteVoituresSubmit(@ModelAttribute Voiture voiture) throws JsonProcessingException  {
+    		//voitureService.deleteVoiture(voiture.getId());
+    		System.out.println(voiture.getId());
         return "redirect:/admin/voitures";
     }
 }
