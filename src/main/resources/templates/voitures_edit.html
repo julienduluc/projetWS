@@ -2,15 +2,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link
-	href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="style.css">
-<title>Accueil Admin</title>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<title>Monster Garage - Admin</title>
 </head>
 <body style="background-color: #dddddd">
 	<nav class="navbar navbar-dark bg-dark">
@@ -23,36 +33,38 @@
 		</span>
 		</div>
 	</nav>
-	<div class="card">
+	<div class="container">
+		<h2>Éditer le prix et la quantité d'une voiture</h2>
 		<form action="#" th:action="@{/admin/voitures/edit/}"
 			th:object="${voiture}" method="post">
 			<input type="hidden" th:field="*{id}" /> <img
 				class="img-fluid img-thumbnail" th:width="500px"
 				th:src="@{'/img/'+ ${voiture.getPhoto()}}">
 			<p>
-				Marque : <span th:text="${voiture.getMarque()}"></span>
+				<b>Marque : </b><span th:text="${voiture.getMarque()}"></span>
 			</p>
 			<p>
-				Modele : <span th:text="${voiture.getModele()}"></span>
+				<b>Modele : </b><span th:text="${voiture.getModele()}"></span>
 			</p>
 			<p>
-				Couleur : <span th:text="${voiture.getCouleur()}"></span>
+				<b>Couleur : </b><span th:text="${voiture.getCouleur()}"></span>
 			</p>
-			Prix : <input type="text" th:field="*{prix}" /></br>
-			</br>
+			<div class="form-group">
+				<label><b>Prix</b></label> <input required type="number" min="1"
+					max="100000000" th:field="*{prix}" class="form-control col-sm-3"
+					placeholder="Prix" />
+			</div>
 			<p>
-				Année de Sortie : <span th:text="${voiture.getAnneeSortie()}"></span>
+				<b>Année de Sortie : </b><span th:text="${voiture.getAnneeSortie()}"></span>
 			</p>
 			<p>
-				GPS : <span th:text="${voiture.isGps()}"></span>
+				<b>GPS : </b><span th:text="${voiture.isGps()} ? 'Oui' : 'Non'"></span>
 			</p>
 			<p>
-				Climatisation : <span th:text="${voiture.isClimatisation()}"></span>
+				<b>Climatisation : </b><span th:text="${voiture.isClimatisation()} ? 'Oui' : 'Non'"></span>
 			</p>
-
-			<input type="submit" value="Valider" /> <a
-				th:href="@{'~/admin/voitures'}"> <input type="button"
-				value="Retour">
+			<input type="submit" class="btn btn-primary" value="Valider" /> 
+			<a th:href="@{'~/admin/voitures'}"> <input type="button" class="btn btn-danger" value="Retour">
 			</a>
 		</form>
 	</div>
