@@ -44,17 +44,14 @@ public class VoitureControllerAdmin {
     @GetMapping("/edit/{voitureId}")
     String editVoitures(Model model,@PathVariable Integer voitureId) {  
     	Voiture v = voitureService.findById(voitureId);
-        
-    
 		model.addAttribute("voiture", v);
-			
-		
-		 
         return "voitures_edit";
     }
     
     @PostMapping("/edit")
+
     public String editVoituresSubmit(@ModelAttribute Voiture voiture, @RequestParam("file") MultipartFile file) throws JsonProcessingException  {
+
     		voitureService.editVoiturePrix(voiture.getId(), voiture.getPrix());
     		File convFile = new File(System.getProperty("java.io.tmpdir") + "/" + file);
             byte[] fileContent;
@@ -79,4 +76,18 @@ public class VoitureControllerAdmin {
     		
         return "redirect:/admin/voitures";
     }*/
+
+    @GetMapping("/delete/{voitureId}")
+    String deleteVoitures(Model model,@PathVariable Integer voitureId) {  
+    	Voiture v = voitureService.findById(voitureId);
+		model.addAttribute("voiture", v);
+        return "voitures_delete";
+    }
+    
+    @PostMapping("/delete")
+    public String deleteVoituresSubmit(@ModelAttribute Voiture voiture) throws JsonProcessingException  {
+    		//voitureService.deleteVoiture(voiture.getId());
+    		System.out.println(voiture.getId());
+        return "redirect:/admin/voitures";
+    }
 }

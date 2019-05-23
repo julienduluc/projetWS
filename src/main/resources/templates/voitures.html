@@ -1,60 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-	crossorigin="anonymous"></script>
-<title>Insert title here</title>
+<link rel="stylesheet" href="style.css">
+<title>Accueil Admin</title>
 </head>
-<body>
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th scope="col">Ids</th>
-				<th scope="col">Marque</th>
-				<th scope="col">Modele</th>
-				<th scope="col">Prix</th>
-				<th scope="col">Couleur</th>
-				<th scope="col">Année de Sortie</th>
-				<th scope="col">Gps</th>
-				<th scope="col">Climatisation</th>
-			</tr>
-		</thead>
-		<tbody>
-			<div class="card" th:each="voiture : ${voitures}">
-				<tr>
-					<th scope="row"><p class="card-text"
-							th:text="${voiture.getId()}"></p></th>
-					<td><p class="card-text" th:text="${voiture.getMarque()}">
-						</p></td>
-					<td><p class="card-text" th:text="${voiture.getModele()}">
-						</p></td>
-					<td><p class="card-text" th:text="${voiture.getPrix()}"></p></td>
-					<td><p class="card-text" th:text="${voiture.getCouleur()}">
-						</p></td>
-					<td><p class="card-text" th:text="${voiture.getAnneeSortie()}"></p></td>
-					<td><p class="card-text" th:text="${voiture.isGps()}"></p></td>
-					<td><p class="card-text"
-							th:text="${voiture.isClimatisation()}"></p></td>
-					<td><a class="card-title"
-						th:href="@{'voitures/edit/' + ${voiture.getId()}}">Edit</a>
-				</tr>
+<body style="background-color: #dddddd">
+	<nav class="navbar navbar-dark bg-dark">
+		<a class="navbar-brand text-danger"
+			style="font-family: Impact; font-size: 25px;" href="#">MONSTER
+			GARAGE</a>
+		</button>
+		<span style="font-size: 25px;" class="navbar-text">Administrateur
+			<span class="fa fa-lock"></span>
+		</span>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="row" style="padding: 20px 0 20px 0">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<button type="button" data-toggle="modal" data-target="#editerModal"
+					class="btn btn-primary">Ajouter une voiture</button>
+				<button type="button" data-toggle="modal" data-target="#ventesModal"
+					class="btn btn-primary">Consulter les ventes</button>
 			</div>
-			
-		</tbody>
-	</table>
+
+			<div class="col-md-4"></div>
+		</div>
+				<form action="#" th:action="@{~/admin/voitures/}"  method="get">
+				 <input  type="text" name="marque" placeholder="Marque"/>
+				 <input  type="text" name="modele" placeholder="Modele" />
+				 <input  type="number" min="1" name="prixMin" placeholder="Prix Minimum" />
+				 <input  type="number" max="100000000" name="prixMax" placeholder="Prix Maximum" />
+				<input type="submit" value="Appliquer" />
+		</form>
+		<div class="row">
+			<div class="col-md-6" th:each="voiture : ${voitures}">
+
+				<img class="img-fluid img-thumbnail" src="./autopsieVol2.jpg">
+
+				<span th:text="${voiture.getMarque()}"></span> | <span
+					th:text="${voiture.getModele()}"></span> | <span
+					th:text="${voiture.getPrix()}"></span>
+				<a th:href="@{'voitures/edit/' + ${voiture.getId()}}">
+					<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+				</a>
+				<a th:href="@{'voitures/delete/' + ${voiture.getId()}}">
+					<i class="fa fa-trash" aria-hidden="true"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+
 </body>
+<footer class="footer bg-dark">
+	<div class="text-center text-light">Â© 2019 Copyright Monster
+		Garage</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</footer>
 </html>
