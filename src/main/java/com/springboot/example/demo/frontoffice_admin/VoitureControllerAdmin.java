@@ -51,7 +51,7 @@ public class VoitureControllerAdmin {
     
     @PostMapping("/edit")
     public String editVoituresSubmit(@ModelAttribute Voiture voiture) throws JsonProcessingException  {
-    	voitureService.editVoiturePrix(voiture.getId(), voiture.getPrix());
+    	voitureService.editVoiturePrixQuantite(voiture.getId(), voiture.getPrix(),voiture.getQuantiteRestante());
         return "redirect:/admin/voitures";
     }
     
