@@ -14,4 +14,6 @@ public interface VoitureRepository {
 	Collection<Voiture> rechercheVoitures(String marque, String modele, String prixMin, String prixMax);
 	Voiture editVoiturePrix(Integer id, double prix);
 	Voiture editVoiturePrix(Integer id, String prix);
+	void encodePhotoVoiture(Voiture v);
+	Collection<Voiture> findPhotos();
 }

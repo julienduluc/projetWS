@@ -9,6 +9,7 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import com.springboot.example.demo.entities.Vente;
+import com.springboot.example.demo.entities.Voiture;
 
 
 @Repository
@@ -38,6 +39,7 @@ public class VenteRepositoryInMemory implements VenteRepository {
 		int i = ventes.size() + 1;
 		vente.setId(i);
 		this.ventes.put(i, vente);
+		decrementeQuantiteRestante(vente.getVoiture());
 		return vente;
 
 	}
@@ -113,5 +115,10 @@ public class VenteRepositoryInMemory implements VenteRepository {
 		return liste.values();
 	}
 
-
+	@Override
+	public void decrementeQuantiteRestante(Voiture voiture) {
+		Integer i = voiture.getQuantiteRestante();
+		i -= 1 ;
+		voiture.setQuantiteRestante(i);
+	}	
 }

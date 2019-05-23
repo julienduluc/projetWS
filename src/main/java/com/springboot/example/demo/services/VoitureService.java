@@ -16,4 +16,5 @@ public interface VoitureService {
     Voiture editVoiturePrix(int id, double prix);
     Voiture editVoiturePrix(int id, String prix);
     Voiture deleteVoiture(int id);
+    Collection<Voiture> findPhotos();
 }

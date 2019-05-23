@@ -55,10 +55,16 @@ public class VenteController {
     @ApiOperation(value = "Ajoute une vente")
     Vente saveVente(@RequestBody Vente vente) {
     	Voiture v = voitureService.findById(vente.getVoiture().getId());
-    	vente.setVoiture(v);
-    	Calendar calendar = Calendar.getInstance();
-    	vente.setAnneeVente(calendar.get(Calendar.YEAR));
-        return this.venteService.saveVente(vente);
+    	
+    	if (v.getQuantiteRestante() > 0) {
+    		
+	    	vente.setVoiture(v);
+	    	Calendar calendar = Calendar.getInstance();
+	    	vente.setAnneeVente(calendar.get(Calendar.YEAR));
+	        return this.venteService.saveVente(vente);
+    	}
+    	return null;
+    	
       /*  ObjectMapper mapper = new ObjectMapper();
         try {
 			mapper.writerWithDefaultPrettyPrinter().writeValue(new File("datas/ventes.json"), this.venteService.getAllVentes());
