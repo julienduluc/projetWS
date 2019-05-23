@@ -49,30 +49,14 @@ public class VoitureControllerAdmin {
         return "voitures_edit";
     }
     
-	@PostMapping("/edit")
-	public String editVoituresSubmit(@ModelAttribute Voiture voiture, @RequestParam("file") MultipartFile file)
-			throws JsonProcessingException {
+    @PostMapping("/edit")
+    public String editVoituresSubmit(@ModelAttribute Voiture voiture) throws JsonProcessingException  {
+    	voitureService.editVoiturePrix(voiture.getId(), voiture.getPrix());
+        return "redirect:/admin/voitures";
+    }
+    
 
-		voitureService.editVoiturePrix(voiture.getId(), voiture.getPrix());
-		File convFile = new File(System.getProperty("java.io.tmpdir") + "/" + file);
-		byte[] fileContent;
-
-		try {
-			file.transferTo(convFile);
-			fileContent = FileUtils.readFileToByteArray(convFile);
-			String encodedString = Base64.getEncoder().encodeToString(fileContent);
-
-			byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
-			FileUtils.writeByteArrayToFile(new File("img/" + file.getOriginalFilename()), decodedBytes);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return "redirect:/admin/voitures";
-	}
-
-	@GetMapping("/newVoiture")
+	@GetMapping("/add")
 	public String createVoiture(Model model) throws JsonProcessingException {
 		Voiture v = new Voiture();
 		model.addAttribute("voiture", v);
@@ -92,12 +76,12 @@ public class VoitureControllerAdmin {
 			String encodedString = Base64.getEncoder().encodeToString(fileContent);
 
 			byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
-			FileUtils.writeByteArrayToFile(new File("img/" + file.getOriginalFilename()), decodedBytes);
+			FileUtils.writeByteArrayToFile(new File("src/main/resources/img/" + file.getOriginalFilename()), decodedBytes);
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		voiture.setPhoto("/" + file.getOriginalFilename());
+		voiture.setPhoto(file.getOriginalFilename());
 		voitureService.saveVoiture(voiture);
 		return "redirect:/admin/voitures";
 	}
@@ -111,8 +95,7 @@ public class VoitureControllerAdmin {
 
 	@PostMapping("/delete")
 	public String deleteVoituresSubmit(@ModelAttribute Voiture voiture) throws JsonProcessingException {
-		// voitureService.deleteVoiture(voiture.getId());
-		System.out.println(voiture.getId());
+		voitureService.deleteVoiture(voiture.getId());
 		return "redirect:/admin/voitures";
 	}
 }

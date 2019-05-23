@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springboot.example.demo.config.RoutesApi;
 import com.springboot.example.demo.entities.Vente;
-import com.springboot.example.demo.entities.Voiture;
 import com.springboot.example.demo.services.VenteServiceImpl;
 
 @Controller

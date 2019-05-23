@@ -24,20 +24,36 @@
 		</div>
 	</nav>
 	<div class="card">
+		<form action="#" th:action="@{/admin/voitures/edit/}"
+			th:object="${voiture}" method="post">
+			<input type="hidden" th:field="*{id}" /> <img
+				class="img-fluid img-thumbnail" th:width="500px"
+				th:src="@{'/img/'+ ${voiture.getPhoto()}}">
+			<p>
+				Marque : <span th:text="${voiture.getMarque()}"></span>
+			</p>
+			<p>
+				Modele : <span th:text="${voiture.getModele()}"></span>
+			</p>
+			<p>
+				Couleur : <span th:text="${voiture.getCouleur()}"></span>
+			</p>
+			Prix : <input type="text" th:field="*{prix}" /></br>
+			</br>
+			<p>
+				Année de Sortie : <span th:text="${voiture.getAnneeSortie()}"></span>
+			</p>
+			<p>
+				GPS : <span th:text="${voiture.isGps()}"></span>
+			</p>
+			<p>
+				Climatisation : <span th:text="${voiture.isClimatisation()}"></span>
+			</p>
 
-		<form action="#" th:action="@{/admin/voitures/edit/}" th:object="${voiture}" method="post" enctype="multipart/form-data">
-				<input type="hidden" th:field="*{id}" />
-				<p>Photo : <form:label path="file"></form:label>
-				<input type="file" name="file" /></p>
-				<p> Marque : <span th:text="${voiture.getMarque()}"></span> </p>
-				<p>Modele : <span th:text="${voiture.getModele()}"></span> </p>
-				<p>Couleur : <span th:text="${voiture.getCouleur()}"></span> </p>
-				Prix : <input  required type="number" min="1"  max="100000000" th:field="*{prix}"/></br></br>
-				<p>Année de Sortie : <span th:text="${voiture.getAnneeSortie()}"></span> </p>
-				<p>GPS : <span th:text="${voiture.isGps()}"></span> </p>
-				<p>Climatisation : <span th:text="${voiture.isClimatisation()}"></span> </p>
-				
-				<input type="submit" value="Valider" />
+			<input type="submit" value="Valider" /> <a
+				th:href="@{'~/admin/voitures'}"> <input type="button"
+				value="Retour">
+			</a>
 		</form>
 	</div>
 </body>
