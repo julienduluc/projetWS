@@ -51,7 +51,7 @@
 			<br>
 			<div class="col-md-6" th:each="vente : ${ventes}">
 
-				<img class="img-fluid img-thumbnail" src="./autopsieVol2.jpg">
+				<img class="img-fluid img-thumbnail" th:width="100px" th:src="@{'/img/'+ ${vente.getVoiture().getPhoto()}}">
 
 				<span th:text="${vente.getVoiture().getMarque()}"></span> | <span
 					th:text="${vente.getVoiture().getModele()}"></span> | <span

@@ -47,11 +47,13 @@
 				<input type="submit" value="Appliquer" />
 		</form>
 		<div class="row">
+			
 			<div class="col-md-6" th:each="voiture : ${voitures}">
 
-				<img class="img-fluid img-thumbnail" src="./autopsieVol2.jpg">
+<figure>
+   <img class="img-fluid img-thumbnail" th:width="500px" th:src="@{'/img/'+ ${voiture.getPhoto()}}">
 
-				<span th:text="${voiture.getMarque()}"></span> | <span
+    <figcaption><span th:text="${voiture.getMarque()}"></span> | <span
 					th:text="${voiture.getModele()}"></span> | <span
 					th:text="${voiture.getPrix()} + €"></span>
 				<a th:href="@{'/admin/voitures/edit/' + ${voiture.getId()}}">
@@ -59,7 +61,12 @@
 				</a>
 				<a th:href="@{'/admin/voitures/delete/' + ${voiture.getId()}}">
 					<i class="fa fa-trash" aria-hidden="true"></i>
-				</a>
+				</a></figcaption>
+</figure>
+
+			
+
+				
 			</div>
 		</div>
 	</div>

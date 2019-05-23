@@ -28,7 +28,9 @@
 		<form action="#" th:action="@{/admin/voitures/delete/}" th:object="${voiture}" method="post">
 			
 				 <input  type="hidden" th:field="*{id}" /></br>
-				ICIIIIIIIIII PHOTOOOOOOOOOOO
+				<img
+				class="img-fluid img-thumbnail" th:width="500px"
+				th:src="@{'/img/'+ ${voiture.getPhoto()}}">
 				<p> Marque : <span th:text="${voiture.getMarque()}"></span> </p>
 				<p>Modele : <span th:text="${voiture.getModele()}"></span> </p>
 				<p>Couleur : <span th:text="${voiture.getCouleur()}"></span> </p>
@@ -37,7 +39,7 @@
 				<p>GPS : <span th:text="${voiture.isGps()}"></span> </p>
 				<p>Climatisation : <span th:text="${voiture.isClimatisation()}"></span> </p>
 				
-				<input type="submit" value="Supprimer" /> <a th:href="@{'~/admin/voitures'}" > <input type="button" value="Bouton"> </a>
+				<input type="submit" value="Supprimer" /> <a th:href="@{'~/admin/voitures'}" > <input type="button" value="Retour"> </a>
 		</form>
 	</div>
 </body>

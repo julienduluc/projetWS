@@ -1,10 +1,5 @@
 package com.springboot.example.demo.frontoffice_admin;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Base64;
-
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.springboot.example.demo.config.RoutesApi;
@@ -49,25 +43,8 @@ public class VoitureControllerAdmin {
     }
     
     @PostMapping("/edit")
-
-    public String editVoituresSubmit(@ModelAttribute Voiture voiture, @RequestParam("file") MultipartFile file) throws JsonProcessingException  {
-
-    		voitureService.editVoiturePrix(voiture.getId(), voiture.getPrix());
-    		File convFile = new File(System.getProperty("java.io.tmpdir") + "/" + file);
-            byte[] fileContent;
-            System.out.println("ok" + convFile.getName());
-    		try {
-    			file.transferTo(convFile);
-    			fileContent = FileUtils.readFileToByteArray(convFile);
-    			String encodedString = Base64.getEncoder().encodeToString(fileContent);
-    			
-    			byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
-    			FileUtils.writeByteArrayToFile(new File("img/" + file.getOriginalFilename()), decodedBytes);
-    			
-    		} catch (IOException e) {
-    			e.printStackTrace();
-    		}
-    		
+    public String editVoituresSubmit(@ModelAttribute Voiture voiture) throws JsonProcessingException  {
+    	voitureService.editVoiturePrix(voiture.getId(), voiture.getPrix());
         return "redirect:/admin/voitures";
     }
     

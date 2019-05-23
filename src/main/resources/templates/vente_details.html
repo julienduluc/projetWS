@@ -36,7 +36,7 @@
 		<p>
 			<b>Infos Voiture</b>
 		</p>
-		<p>Photo :</p>
+		<img class="img-fluid img-thumbnail" th:width="500px" th:src="@{'/img/'+ ${vente.getVoiture().getPhoto()}}">
 		<p>
 			Marque : <span th:text="${vente.getVoiture().getMarque()}"></span>
 		</p>
