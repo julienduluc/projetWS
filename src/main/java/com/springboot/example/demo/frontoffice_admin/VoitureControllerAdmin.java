@@ -27,67 +27,92 @@ public class VoitureControllerAdmin {
 
 	private VoitureServiceImpl voitureService;
 
-    @Autowired
-    public VoitureControllerAdmin(final VoitureServiceImpl voitureService){
-        this.voitureService = voitureService;
-    }
+	@Autowired
+	public VoitureControllerAdmin(final VoitureServiceImpl voitureService) {
+		this.voitureService = voitureService;
+	}
 
-   @GetMapping()
-    String rechercheVoitures(Model model, @RequestParam(value="marque", defaultValue="") String marque, 
-    		@RequestParam(value="modele", defaultValue="") String modele, @RequestParam(value="prixMin", defaultValue="0") String prixMin,
-    		@RequestParam(value="prixMax", defaultValue="1000000000") String prixMax){  
-    	
-        model.addAttribute("voitures", voitureService.rechercheVoitures(marque, modele, prixMin, prixMax));
-        return "voitures";
-    }
-    
-    @GetMapping("/edit/{voitureId}")
-    String editVoitures(Model model,@PathVariable Integer voitureId) {  
-    	Voiture v = voitureService.findById(voitureId);
+	@GetMapping()
+	String rechercheVoitures(Model model, @RequestParam(value = "marque", defaultValue = "") String marque,
+			@RequestParam(value = "modele", defaultValue = "") String modele,
+			@RequestParam(value = "prixMin", defaultValue = "0") String prixMin,
+			@RequestParam(value = "prixMax", defaultValue = "1000000000") String prixMax) {
+
+		model.addAttribute("voitures", voitureService.rechercheVoitures(marque, modele, prixMin, prixMax));
+		return "voitures";
+	}
+
+	@GetMapping("/edit/{voitureId}")
+	String editVoitures(Model model, @PathVariable Integer voitureId) {
+		Voiture v = voitureService.findById(voitureId);
 		model.addAttribute("voiture", v);
         return "voitures_edit";
     }
     
-    @PostMapping("/edit")
+	@PostMapping("/edit")
+	public String editVoituresSubmit(@ModelAttribute Voiture voiture, @RequestParam("file") MultipartFile file)
+			throws JsonProcessingException {
 
-    public String editVoituresSubmit(@ModelAttribute Voiture voiture, @RequestParam("file") MultipartFile file) throws JsonProcessingException  {
+		voitureService.editVoiturePrix(voiture.getId(), voiture.getPrix());
+		File convFile = new File(System.getProperty("java.io.tmpdir") + "/" + file);
+		byte[] fileContent;
 
-    		voitureService.editVoiturePrix(voiture.getId(), voiture.getPrix());
-    		File convFile = new File(System.getProperty("java.io.tmpdir") + "/" + file);
-            byte[] fileContent;
-            System.out.println("ok" + convFile.getName());
-    		try {
-    			file.transferTo(convFile);
-    			fileContent = FileUtils.readFileToByteArray(convFile);
-    			String encodedString = Base64.getEncoder().encodeToString(fileContent);
-    			
-    			byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
-    			FileUtils.writeByteArrayToFile(new File("img/" + file.getOriginalFilename()), decodedBytes);
-    			
-    		} catch (IOException e) {
-    			e.printStackTrace();
-    		}
-    		
-        return "redirect:/admin/voitures";
-    }
-    
-    /*@PostMapping("/create")
-    public String createVoiture(@RequestParam("file") MultipartFile file) throws JsonProcessingException  {
-    		
-        return "redirect:/admin/voitures";
-    }*/
+		try {
+			file.transferTo(convFile);
+			fileContent = FileUtils.readFileToByteArray(convFile);
+			String encodedString = Base64.getEncoder().encodeToString(fileContent);
 
-    @GetMapping("/delete/{voitureId}")
-    String deleteVoitures(Model model,@PathVariable Integer voitureId) {  
-    	Voiture v = voitureService.findById(voitureId);
+			byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
+			FileUtils.writeByteArrayToFile(new File("img/" + file.getOriginalFilename()), decodedBytes);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return "redirect:/admin/voitures";
+	}
+
+	@GetMapping("/newVoiture")
+	public String createVoiture(Model model) throws JsonProcessingException {
+		Voiture v = new Voiture();
 		model.addAttribute("voiture", v);
-        return "voitures_delete";
-    }
-    
-    @PostMapping("/delete")
-    public String deleteVoituresSubmit(@ModelAttribute Voiture voiture) throws JsonProcessingException  {
-    		//voitureService.deleteVoiture(voiture.getId());
-    		System.out.println(voiture.getId());
-        return "redirect:/admin/voitures";
-    }
+		return "voitures_create";
+	}
+
+	@PostMapping("/create")
+	public String createVoitureSubmit(@ModelAttribute Voiture voiture, @RequestParam("file") MultipartFile file)
+			throws JsonProcessingException {
+
+		File convFile = new File(System.getProperty("java.io.tmpdir") + "/" + file);
+		byte[] fileContent;
+
+		try {
+			file.transferTo(convFile);
+			fileContent = FileUtils.readFileToByteArray(convFile);
+			String encodedString = Base64.getEncoder().encodeToString(fileContent);
+
+			byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
+			FileUtils.writeByteArrayToFile(new File("img/" + file.getOriginalFilename()), decodedBytes);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		voiture.setPhoto("/" + file.getOriginalFilename());
+		voitureService.saveVoiture(voiture);
+		return "redirect:/admin/voitures";
+	}
+
+	@GetMapping("/delete/{voitureId}")
+	String deleteVoitures(Model model, @PathVariable Integer voitureId) {
+		Voiture v = voitureService.findById(voitureId);
+		model.addAttribute("voiture", v);
+		return "voitures_delete";
+	}
+
+	@PostMapping("/delete")
+	public String deleteVoituresSubmit(@ModelAttribute Voiture voiture) throws JsonProcessingException {
+		// voitureService.deleteVoiture(voiture.getId());
+		System.out.println(voiture.getId());
+		return "redirect:/admin/voitures";
+	}
 }
