@@ -24,21 +24,63 @@
 		</div>
 	</nav>
 	<div class="card">
+		<p>
+			<b>Infos Générales</b>
+		</p>
+		<p>
+			Annee Vente : <span th:text="${vente.getAnneeVente()}"></span>
+		</p>
+		<p>
+			Moyen de Paiement : <span th:text="${vente.getMoyenPaiement()}"></span>
+		</p>
+		<p>
+			<b>Infos Voiture</b>
+		</p>
+		<p>Photo :</p>
+		<p>
+			Marque : <span th:text="${vente.getVoiture().getMarque()}"></span>
+		</p>
+		<p>
+			Modele : <span th:text="${vente.getVoiture().getModele()}"></span>
+		</p>
+		<p>
+			Couleur : <span th:text="${vente.getVoiture().getCouleur()}"></span>
+		</p>
+		<p>
+			Prix : <span th:text="${vente.getVoiture().getPrix()}"> </span>
+		</p>
+		<p>
+			Année de Sortie : <span
+				th:text="${vente.getVoiture().getAnneeSortie()}"></span>
+		</p>
+		<p>
+			GPS : <span th:text="${vente.getVoiture().isGps()}"></span>
+		</p>
+		<p>
+			Climatisation : <span
+				th:text="${vente.getVoiture().isClimatisation()}"></span>
+		</p>
+		<p>
+			<b>Infos Acheteur</b>
+		</p>
+		<p>
+			Nom : <span th:text="${vente.getUtilisateur().getNom()}"></span>
+		</p>
+		<p>
+			Prénom : <span th:text="${vente.getUtilisateur().getPrenom()}"></span>
+		</p>
+		<p>
+			Annee de Naissance : <span
+				th:text="${vente.getUtilisateur().getAnneeNaissance()}"></span>
+		</p>
+		<p>
+			Adresse : <span
+				th:text="${vente.getUtilisateur().getAdresse()} + ${vente.getUtilisateur().getCodePostal()} + ${vente.getUtilisateur().getVille()}"></span>
+		</p>
+		<a th:href="@{'~/admin/ventes'}"> <input type="button"
+			value="Retour">
+		</a>
 
-		<form action="#" th:action="@{/admin/voitures/edit/}" th:object="${voiture}" method="post">
-				<input type="hidden" th:field="*{id}" />
-				<p>Photo : <form:label path="file"></form:label>
-				<input type="file" name="file" /></p>
-				<p> Marque : <span th:text="${voiture.getMarque()}"></span> </p>
-				<p>Modele : <span th:text="${voiture.getModele()}"></span> </p>
-				<p>Couleur : <span th:text="${voiture.getCouleur()}"></span> </p>
-				Prix : <input  type="text" th:field="*{prix}" /></br></br>
-				<p>Année de Sortie : <span th:text="${voiture.getAnneeSortie()}"></span> </p>
-				<p>GPS : <span th:text="${voiture.isGps()}"></span> </p>
-				<p>Climatisation : <span th:text="${voiture.isClimatisation()}"></span> </p>
-				
-				<input type="submit" value="Valider" />
-		</form>
 	</div>
 </body>
 <footer class="footer bg-dark">

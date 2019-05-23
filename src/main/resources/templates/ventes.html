@@ -25,28 +25,43 @@
 	</nav>
 
 	<div class="container">
-				<form action="#" th:action="@{~/admin/ventes/}"  method="get">
-				 <input  type="text" name="marque" placeholder="Marque"/>
-				 <input  type="text" name="annee" placeholder="Annee" />
-				<input type="submit" value="Appliquer" />
+		<div class="row" style="padding: 20px 0 20px 0">
+			<div class="col-md-4">
+				<a th:href="@{'/admin/voitures'}"><button type="button"
+						data-toggle="modal" class="btn btn-primary">
+
+						Consulter les voitures</i>
+
+					</button></a>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			Chiffre d'affaire de l'année &nbsp;<span th:text="${annee}"></span>&nbsp;
+			:&nbsp;<b><span th:text="${chiffre_affaire_annee}"></span>€</b>
+		</div>
+		<br>
+
+		<form action="#" th:action="@{~/admin/ventes/}" method="get">
+			<input type="text" name="marque" placeholder="Marque" /> <input
+				type="text" name="annee" placeholder="Annee" /> <input
+				type="submit" value="Appliquer" />
 		</form>
 		<div class="row">
+			<br>
 			<div class="col-md-6" th:each="vente : ${ventes}">
 
 				<img class="img-fluid img-thumbnail" src="./autopsieVol2.jpg">
 
 				<span th:text="${vente.getVoiture().getMarque()}"></span> | <span
 					th:text="${vente.getVoiture().getModele()}"></span> | <span
-					th:text="${vente.getVoiture().getPrix()}"></span>
-					<a th:href="@{'/admin/ventes/edit/' + ${vente.getId()}}">
-					<i class="fa fa-eye" aria-hidden="true"></i>
+					th:text="${vente.getVoiture().getPrix()}"></span> <a
+					th:href="@{'/admin/ventes/details/' + ${vente.getId()}}"> <i
+					class="fa fa-eye" aria-hidden="true"></i>
 				</a>
 			</div>
 		</div>
-		<div class="row">
-		Chiffre d'affaire de l'année <span th:text="${annee}"></span> : 
-			<span th:text="${chiffre_affaire_annee}"></span>
-		</div>
+
 	</div>
 
 </body>

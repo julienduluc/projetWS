@@ -55,7 +55,7 @@ public class VoitureControllerAdmin {
     		voitureService.editVoiturePrix(voiture.getId(), voiture.getPrix());
     		File convFile = new File(System.getProperty("java.io.tmpdir") + "/" + file);
             byte[] fileContent;
-            
+            System.out.println("ok" + convFile.getName());
     		try {
     			file.transferTo(convFile);
     			fileContent = FileUtils.readFileToByteArray(convFile);
