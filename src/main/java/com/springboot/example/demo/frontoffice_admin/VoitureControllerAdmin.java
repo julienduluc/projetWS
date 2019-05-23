@@ -74,15 +74,19 @@ public class VoitureControllerAdmin {
 			file.transferTo(convFile);
 			fileContent = FileUtils.readFileToByteArray(convFile);
 			String encodedString = Base64.getEncoder().encodeToString(fileContent);
+			
+			System.out.println(encodedString);
 
 			byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
 			FileUtils.writeByteArrayToFile(new File("src/main/resources/img/" + file.getOriginalFilename()), decodedBytes);
-
+			
+			voiture.setPhoto(file.getOriginalFilename());
+			voitureService.saveVoiture(voiture);
+			voiture.setPhoto(encodedString);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		voiture.setPhoto(file.getOriginalFilename());
-		voitureService.saveVoiture(voiture);
+
 		return "redirect:/admin/voitures";
 	}
 
