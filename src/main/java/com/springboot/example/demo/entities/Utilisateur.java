@@ -5,7 +5,10 @@ public class Utilisateur {
 	private int id;
 	private String nom;
 	private String prenom;
-	private int age;
+	private int anneeNaissance;
+	private String adresse;
+	private String ville;
+	private String codePostal;
 	
 	public int getId() {
 		return id;
@@ -16,9 +19,6 @@ public class Utilisateur {
 	public String getPrenom() {
 		return prenom;
 	}
-	public int getAge() {
-		return age;
-	}
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -28,7 +28,28 @@ public class Utilisateur {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	public void setAge(int age) {
-		this.age = age;
+	public int getAnneeNaissance() {
+		return anneeNaissance;
+	}
+	public String getAdresse() {
+		return adresse;
+	}
+	public String getVille() {
+		return ville;
+	}
+	public String getCodePostal() {
+		return codePostal;
+	}
+	public void setAnneeNaissance(int anneeNaissance) {
+		this.anneeNaissance = anneeNaissance;
+	}
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
 	}
 }

@@ -1,11 +1,15 @@
 [{
   "anneeVente": 2019,
   "id": 1,
+  "moyenPaiement": "CB",
   "utilisateur": {
-    "age": 0,
+    "anneeNaissance": 0,
     "id": 0,
     "nom": "string",
-    "prenom": "ee"
+    "prenom": "ee",
+	"adresse": "68 rue du fogas",
+	"ville": "Budapest",
+	"codePostal": "40400"	
   },
   "voiture": {
 		"id": "5",
@@ -16,7 +20,7 @@
 		"anneeSortie": 2004,
 		"gps": true,
 		"climatisation": false,
-		"photo": "scalian.png",
+		"photo": "Corsa.png",
 		"description": "L Opel Corsa, premiere petite cylindree de la marque allemande Opel, est une petite voiture 5 places apparue fin 1982 et declinee selon les generations sous plusieurs variantes"
 	}
 }]

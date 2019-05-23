@@ -73,12 +73,16 @@ public class VenteRepositoryInMemory implements VenteRepository {
 	public Collection<Vente> getVentesByAnnee(Integer annee) {
 		Map<Integer, Vente> liste = new HashMap<>();
 		
-		ventes.forEach((v, k) -> {			
+		if (annee >=2019) {
+			ventes.forEach((v, k) -> {			
 			if (k.getAnneeVente() == annee) {
 				liste.put(k.getId(), k);	
-			}			
+			}
 		});
-		return liste.values();
+			return liste.values();
+		} else {
+			return findAll();
+		}
 	}
 
 	@Override

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+<title>Accueil Admin</title>
+</head>
+<body style="background-color: #dddddd">
+	<nav class="navbar navbar-dark bg-dark">
+		<a class="navbar-brand text-danger"
+			style="font-family: Impact; font-size: 25px;" href="#">MONSTER
+			GARAGE</a>
+		</button>
+		<span style="font-size: 25px;" class="navbar-text">Administrateur
+			<span class="fa fa-lock"></span>
+		</span>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="row" style="padding: 20px 0 20px 0">
+			<div class="col-md-4">
+				<a th:href="@{'/admin/voitures'}"><button type="button"
+						data-toggle="modal" class="btn btn-primary">
+
+						Consulter les voitures</i>
+
+					</button></a>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			Chiffre d'affaire de l'année &nbsp;<span th:text="${annee}"></span>&nbsp;
+			:&nbsp;<b><span th:text="${chiffre_affaire_annee}"></span>€</b>
+		</div>
+		<br>
+
+		<form action="#" th:action="@{~/admin/ventes/}" method="get">
+			<input type="text" name="marque" placeholder="Marque" /> <input
+				type="text" name="annee" placeholder="Annee" /> <input
+				type="submit" value="Appliquer" />
+		</form>
+		<div class="row">
+			<br>
+			<div class="col-md-6" th:each="vente : ${ventes}">
+
+				<img class="img-fluid img-thumbnail" th:width="100px" th:src="@{'/img/'+ ${vente.getVoiture().getPhoto()}}">
+
+				<span th:text="${vente.getVoiture().getMarque()}"></span> | <span
+					th:text="${vente.getVoiture().getModele()}"></span> | <span
+					th:text="${vente.getVoiture().getPrix()}"></span> <a
+					th:href="@{'/admin/ventes/details/' + ${vente.getId()}}"> <i
+					class="fa fa-eye" aria-hidden="true"></i>
+				</a>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+<footer class="footer bg-dark">
+	<div class="text-center text-light">© 2019 Copyright Monster
+		Garage</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</footer>
+</html>
