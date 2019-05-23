@@ -9,6 +9,7 @@
 		"gps": true,
 		"climatisation": true,
 		"photo": "Urus.png",
+		"quantiteRestante": 2,
 		"description": "Indispensable a votre quotidien, votre smartphone prend place a bord de Nouvelle Twingo et devient un veritable copilote. Grace a la Radio Connect R&Go et ses nombreuses fonctionnalites, pilotez votre vehicule depuis votre smartphone (radio, media, gestion des appels, navigation...). Vous accederez directement a vos applications favorites grace a son nouveau systeme multimedia avec ecran tactile 7'', et sa compatibilite Android Auto et Apple CarPlay."
 	},
 	{
@@ -21,6 +22,7 @@
 		"gps": false,
 		"climatisation": true,
 		"photo": "308.png",
+		"quantiteRestante": 2,
 		"description": "La PEUGEOT 308 vous revele sa forte personnalite des la premiere rencontre. Sa face avant expressive accueille en son centre le Lion Peugeot, et ses jantes Zyrcon 16 participent a son elegance. Pour sublimer son caractere, la berline compacte PEUGEOT 308 se dote d'une signature lumineuse integree dans des projecteurs halogenes."
 	},
 	{
@@ -33,6 +35,7 @@
 		"gps": true,
 		"climatisation": false,
 		"photo": "Clio.png",
+		"quantiteRestante": 2,
 		"description" : "Nouvelle CLIO propose un niveau de qualite des materiaux inedit dans la categorie, avec notamment le Smart cockpit immersif avec sa console haute, l'accoudoir coulissant et les ecrans personnalisables. Elle se presente avec un design seduisant, en evolution avec 100% de pieces nouvelles. Son tout nouvel interieur a la fois epure, technologique et faisant la part belle a l'espace et la polyvalence."
 	},
 	{
@@ -45,6 +48,7 @@
 		"gps": false,
 		"climatisation": false,
 		"photo": "Impreza.png",
+		"quantiteRestante": 2,
 		"description" : "Icone de la marque grace a ses succes en championnat du monde des rallyes (trois titres pilotes et trois titres constructeurs), elle en est a sa cinquieme generation depuis 2016"	
 	},
 	{
@@ -57,6 +61,7 @@
 		"gps": true,
 		"climatisation": false,
 		"photo": "Corsa.png",
+		"quantiteRestante": 2,
 		"description": "L Opel Corsa, premiere petite cylindree de la marque allemande Opel, est une petite voiture 5 places apparue fin 1982 et declinee selon les generations sous plusieurs variantes"
 	},
 	{
@@ -69,6 +74,7 @@
 		"gps": true,
 		"climatisation": true,
 		"photo": "911.png",
+		"quantiteRestante": 2,
 		"description" : "Ideal pour partir en week-end ou en expedition avec vos proches, il offre le confort reve pour profiter pleinement du voyage, notamment avec ses sieges avant ventiles. Son style plus mature et d'une rare elegance est sublime par les nouveaux coloris emblematiques, Soul Red Crystal Metallise et Machine Gray Metallise."
 	}
 ]

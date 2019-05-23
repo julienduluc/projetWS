@@ -59,6 +59,15 @@ public class VoitureController {
         return this.voitureService.rechercheVoitures(marque, modele, prixMin, prixMax);
         
     }
+    
+    @GetMapping(value = "/photos")
+    @ResponseBody
+    @ApiOperation(value = "Filtre les voitures")
+    Collection<Voiture> getAllPhotos() {
+        return this.voitureService.findPhotos();
+        
+    }
+    
 
     @PostMapping()
     @ResponseStatus(HttpStatus.OK)

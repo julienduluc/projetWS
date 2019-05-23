@@ -63,6 +63,11 @@ public class VoitureServiceImpl implements VoitureService {
 		public Voiture deleteVoiture(int id) {
 			//demerde toi gros con
 			return null;
+		}
+
+		@Override
+		public Collection<Voiture> findPhotos() {
+			return voitureRepository.findPhotos();
 		}	   
 		
 }

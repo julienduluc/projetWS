@@ -1,11 +1,15 @@
 package com.springboot.example.demo.repositories;
 
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Repository;
 
 import com.springboot.example.demo.entities.Vente;
@@ -13,12 +17,14 @@ import com.springboot.example.demo.entities.Voiture;
 
 @Repository
 public class VoitureRepositoryInMemory implements VoitureRepository {
-    private Map<Integer, Voiture> voitures;
+	private Map<Integer, Voiture> voitures;
+	private Map<Integer, Voiture> photosVoitures;
 
 
-    public VoitureRepositoryInMemory() {
-        this.voitures = new HashMap<>();
-    }
+	public VoitureRepositoryInMemory() {
+		this.voitures = new HashMap<>();
+		this.photosVoitures = new HashMap<>();
+	}
 
 
 	@Override
@@ -28,39 +34,42 @@ public class VoitureRepositoryInMemory implements VoitureRepository {
 
 	@Override
 	public Voiture findById(int id) {
-        return voitures.get(id);
+		return voitures.get(id);
 	}
 
 	@Override
 	public Voiture saveVoiture(Voiture voiture) {
 		int i = voitures.size() + 1;
 		voiture.setId(i);
+		encodePhotoVoiture(voiture);
 		this.voitures.put(i, voiture);
+		
 		return voiture;
 	}
 
 	@Override
 	public void saveVoitures(List<Voiture> voitures) {		 
-		 for(Voiture v : voitures) {
-			 this.voitures.put(v.getId(), v);
-		 }		
+		for(Voiture v : voitures) {
+			this.voitures.put(v.getId(), v);
+		}
+		encodePhotoVoiture(null);
 	}
 
 	@Override
 	public void deleteVoiture(int id) {
 		voitures.remove(id);		
 	}
-	
+
 	@Override
 	public Collection<Voiture> rechercheVoitures(String marque, String modele, String prixMin, String prixMax) {
 		Map<Integer, Voiture> liste = new HashMap<>();
-		
+
 		voitures.forEach((v, k) -> {
 			if ((k.getMarque().equals(marque) || marque.equals("")) && (k.getModele().equals(modele) || modele.equals("")) && 
 					k.getPrix() >= Integer.parseInt(prixMin) && k.getPrix() <= Integer.parseInt(prixMax)) {	
 				liste.put(k.getId(), k);	
 			}
-						
+
 		});
 		return liste.values();
 	}
@@ -80,5 +89,46 @@ public class VoitureRepositoryInMemory implements VoitureRepository {
 		v.setPrix(prix);
 		return v;
 	}
-	
+
+
+	@Override
+	public void encodePhotoVoiture(Voiture vo) {
+		
+		if (vo == null) {
+			voitures.forEach((v, k) -> {
+			File convFile = new File("src/main/resources/img/" + k.getPhoto());
+			try {
+				byte[] fileContent;
+				fileContent = FileUtils.readFileToByteArray(convFile);
+				String encodedString = Base64.getEncoder().encodeToString(fileContent);
+				Voiture newVoiture = new Voiture();
+				newVoiture.setPhoto(encodedString);
+				newVoiture.setModele(k.getModele());
+				photosVoitures.put(k.getId(), newVoiture);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	
+		});
+		} else {
+			File convFile = new File("src/main/resources/img/" + vo.getPhoto());
+			try {
+				byte[] fileContent;
+				fileContent = FileUtils.readFileToByteArray(convFile);
+				String encodedString = Base64.getEncoder().encodeToString(fileContent);
+				Voiture newVoiture = new Voiture();
+				newVoiture.setPhoto(encodedString);
+				newVoiture.setModele(vo.getModele());
+				photosVoitures.put(vo.getId(), newVoiture);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+	}
+
+
+	@Override
+	public Collection<Voiture> findPhotos() {
+		return photosVoitures.values();
+	}
 }
