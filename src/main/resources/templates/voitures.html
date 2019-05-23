@@ -29,44 +29,49 @@
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
 				<a th:href="@{'/admin/voitures/add'}"><button type="button"
-					class="btn btn-primary">Ajouter une voiture</button></a>
-				<a th:href="@{'/admin/ventes'}"><button type="button" class="btn btn-primary">
-					
-					Consulter les ventes</i>
-					
-				</button></a>
+						class="btn btn-primary">Ajouter une voiture</button></a> <a
+					th:href="@{'/admin/ventes'}"><button type="button"
+						class="btn btn-primary">
+
+						Consulter les ventes</i>
+
+					</button></a>
 			</div>
 
 			<div class="col-md-4"></div>
 		</div>
-				<form action="#" th:action="@{~/admin/voitures/}"  method="get">
-				 <input  type="text" name="marque" placeholder="Marque"/>
-				 <input  type="text" name="modele" placeholder="Modele" />
-				 <input  type="number" min="1" name="prixMin" placeholder="Prix Minimum" />
-				 <input  type="number" max="100000000" name="prixMax" placeholder="Prix Maximum" />
-				<input type="submit" value="Appliquer" />
+		<form action="#" th:action="@{~/admin/voitures/}" method="get">
+			<input type="text" name="marque" placeholder="Marque" /> <input
+				type="text" name="modele" placeholder="Modele" /> <input
+				type="number" min="1" name="prixMin" placeholder="Prix Minimum" />
+			<input type="number" max="100000000" name="prixMax"
+				placeholder="Prix Maximum" /> <input type="submit"
+				value="Appliquer" />
 		</form>
 		<div class="row">
-			
+
 			<div class="col-md-6" th:each="voiture : ${voitures}">
 
-<figure>
-   <img class="img-fluid img-thumbnail" th:width="500px" th:src="@{'/img/'+ ${voiture.getPhoto()}}">
+				<figure>
+					<img class="img-fluid img-thumbnail" th:width="500px"
+						th:src="@{'/img/'+ ${voiture.getPhoto()}}">
 
-    <figcaption><span th:text="${voiture.getMarque()}"></span> | <span
-					th:text="${voiture.getModele()}"></span> | <span
-					th:text="${voiture.getPrix()} + €"></span>
-				<a th:href="@{'/admin/voitures/edit/' + ${voiture.getId()}}">
-					<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-				</a>
-				<a th:href="@{'/admin/voitures/delete/' + ${voiture.getId()}}">
-					<i class="fa fa-trash" aria-hidden="true"></i>
-				</a></figcaption>
-</figure>
+					<figcaption>
+						<span th:text="${voiture.getMarque()}"></span> | <span
+							th:text="${voiture.getModele()}"></span> | <span
+							th:text="${voiture.getPrix()} + €"></span> |
+							<span th:text="'Quantité restante : ' + ${voiture.getQuantiteRestante()}"</span><a
+							th:href="@{'/admin/voitures/edit/' + ${voiture.getId()}}"> <i
+							class="fa fa-pencil-square-o" aria-hidden="true"></i>
+						</a> <a th:href="@{'/admin/voitures/delete/' + ${voiture.getId()}}">
+							<i class="fa fa-trash" aria-hidden="true"></i>
+						</a>
+					</figcaption>
+				</figure>
 
-			
 
-				
+
+
 			</div>
 		</div>
 	</div>

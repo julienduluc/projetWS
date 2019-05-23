@@ -11,6 +11,7 @@ public class Voiture {
 	private boolean climatisation;
 	private String photo;
 	private String description;
+	private Integer quantiteRestante;
 	
 	public Integer getId() {
 		return id;
@@ -71,6 +72,12 @@ public class Voiture {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public Integer getQuantiteRestante() {
+		return quantiteRestante;
+	}
+	public void setQuantiteRestante(Integer quantiteRestante) {
+		this.quantiteRestante = quantiteRestante;
 	}
 	
 }
