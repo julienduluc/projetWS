@@ -25,42 +25,27 @@
 	</nav>
 
 	<div class="container">
-		<div class="row" style="padding: 20px 0 20px 0">
-			<div class="col-md-4"></div>
-			<div class="col-md-4">
-				<button type="button" data-toggle="modal" data-target="#editerModal"
-					class="btn btn-primary">Ajouter une voiture</button>
-				<button type="button" data-toggle="modal" class="btn btn-primary">
-					<a th:href="@{'/admin/ventes'}">
-					Consulter les ventes</i>
-					</a>
-				</button>
-			</div>
-
-			<div class="col-md-4"></div>
-		</div>
-				<form action="#" th:action="@{~/admin/voitures/}"  method="get">
+				<form action="#" th:action="@{~/admin/ventes/}"  method="get">
 				 <input  type="text" name="marque" placeholder="Marque"/>
-				 <input  type="text" name="modele" placeholder="Modele" />
-				 <input  type="number" min="1" name="prixMin" placeholder="Prix Minimum" />
-				 <input  type="number" max="100000000" name="prixMax" placeholder="Prix Maximum" />
+				 <input  type="text" name="annee" placeholder="Annee" />
 				<input type="submit" value="Appliquer" />
 		</form>
 		<div class="row">
-			<div class="col-md-6" th:each="voiture : ${voitures}">
+			<div class="col-md-6" th:each="vente : ${ventes}">
 
 				<img class="img-fluid img-thumbnail" src="./autopsieVol2.jpg">
 
-				<span th:text="${voiture.getMarque()}"></span> | <span
-					th:text="${voiture.getModele()}"></span> | <span
-					th:text="${voiture.getPrix()} + €"></span>
-				<a th:href="@{'/admin/voitures/edit/' + ${voiture.getId()}}">
-					<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-				</a>
-				<a th:href="@{'/admin/voitures/delete/' + ${voiture.getId()}}">
-					<i class="fa fa-trash" aria-hidden="true"></i>
+				<span th:text="${vente.getVoiture().getMarque()}"></span> | <span
+					th:text="${vente.getVoiture().getModele()}"></span> | <span
+					th:text="${vente.getVoiture().getPrix()}"></span>
+					<a th:href="@{'/admin/ventes/edit/' + ${vente.getId()}}">
+					<i class="fa fa-eye" aria-hidden="true"></i>
 				</a>
 			</div>
+		</div>
+		<div class="row">
+		Chiffre d'affaire de l'année <span th:text="${annee}"></span> : 
+			<span th:text="${chiffre_affaire_annee}"></span>
 		</div>
 	</div>
 
