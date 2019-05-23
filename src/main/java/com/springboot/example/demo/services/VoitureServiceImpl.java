@@ -68,6 +68,11 @@ public class VoitureServiceImpl implements VoitureService {
 		@Override
 		public Collection<Voiture> findPhotos() {
 			return voitureRepository.findPhotos();
+		}
+
+		public Voiture editVoiturePrixQuantite(Integer id, double prix, Integer quantiteRestante) {
+			return voitureRepository.editVoiturePrixQuantite(id, prix,quantiteRestante);
+			
 		}	   
 		
 }

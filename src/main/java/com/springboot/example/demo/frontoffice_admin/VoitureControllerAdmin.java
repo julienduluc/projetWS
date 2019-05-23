@@ -51,7 +51,7 @@ public class VoitureControllerAdmin {
     
     @PostMapping("/edit")
     public String editVoituresSubmit(@ModelAttribute Voiture voiture) throws JsonProcessingException  {
-    	voitureService.editVoiturePrix(voiture.getId(), voiture.getPrix());
+    	voitureService.editVoiturePrixQuantite(voiture.getId(), voiture.getPrix(),voiture.getQuantiteRestante());
         return "redirect:/admin/voitures";
     }
     
@@ -74,8 +74,11 @@ public class VoitureControllerAdmin {
 			file.transferTo(convFile);
 			fileContent = FileUtils.readFileToByteArray(convFile);
 			String encodedString = Base64.getEncoder().encodeToString(fileContent);
+			
+			System.out.println(encodedString);
 
 			byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
+
 			FileUtils.writeByteArrayToFile(new File("src/main/resources/img/" + voiture.getModele()+ ".png"), decodedBytes);
 
 		} catch (IOException e) {
