@@ -21,7 +21,10 @@ import com.springboot.example.demo.config.RoutesApi;
 import com.springboot.example.demo.entities.Voiture;
 import com.springboot.example.demo.services.VoitureServiceImpl;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Controller
+@ApiIgnore
 @RequestMapping(RoutesApi.BASE_URL_VOITURES_ADMIN)
 public class VoitureControllerAdmin {
 
@@ -68,14 +71,11 @@ public class VoitureControllerAdmin {
 			throws JsonProcessingException {
 
 		File convFile = new File(System.getProperty("java.io.tmpdir") + "/" + file);
-		byte[] fileContent;
 
 		try {
 			file.transferTo(convFile);
-			fileContent = FileUtils.readFileToByteArray(convFile);
+			byte[] fileContent = FileUtils.readFileToByteArray(convFile);
 			String encodedString = Base64.getEncoder().encodeToString(fileContent);
-			
-			System.out.println(encodedString);
 
 			byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
 
@@ -85,8 +85,8 @@ public class VoitureControllerAdmin {
 			e.printStackTrace();
 		}
 		voiture.setPhoto(voiture.getModele()+".png");
-		voiture.setDescription("");
-		voiture.setQuantiteRestante(5);
+		voiture.setDescription(voiture.getDescription());
+		voiture.setQuantiteRestante(voiture.getQuantiteRestante());
 		voitureService.saveVoiture(voiture);
 		return "redirect:/admin/voitures";
 	}

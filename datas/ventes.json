@@ -1,26 +1,53 @@
-[{
-  "anneeVente": 2019,
-  "id": 1,
-  "moyenPaiement": "CB",
-  "utilisateur": {
-    "anneeNaissance": 0,
-    "id": 0,
-    "nom": "string",
-    "prenom": "ee",
-	"adresse": "68 rue du fogas",
-	"ville": "Budapest",
-	"codePostal": "40400"	
+[ {
+  "id" : 1,
+  "anneeVente" : 2019,
+  "utilisateur" : {
+    "id" : 0,
+    "nom" : "string",
+    "prenom" : "ee",
+    "anneeNaissance" : 0,
+    "adresse" : "68 rue du fogas",
+    "ville" : "Budapest",
+    "codePostal" : "40400"
   },
-  "voiture": {
-		"id": "5",
-		"marque": "Opel",
-		"modele": "Corsa",
-		"prix": 10000.00,
-		"couleur": "noir",
-		"anneeSortie": 2004,
-		"gps": true,
-		"climatisation": false,
-		"photo": "Corsa.png",
-		"description": "L Opel Corsa, premiere petite cylindree de la marque allemande Opel, est une petite voiture 5 places apparue fin 1982 et declinee selon les generations sous plusieurs variantes"
-	}
-}]
+  "voiture" : {
+    "id" : 5,
+    "marque" : "Opel",
+    "modele" : "Corsa",
+    "prix" : 10000.0,
+    "couleur" : "noir",
+    "anneeSortie" : 2004,
+    "gps" : true,
+    "climatisation" : false,
+    "photo" : "Corsa.png",
+    "description" : "L Opel Corsa, premiere petite cylindree de la marque allemande Opel, est une petite voiture 5 places apparue fin 1982 et declinee selon les generations sous plusieurs variantes",
+    "quantiteRestante" : 3
+  },
+  "moyenPaiement" : "CB"
+}, {
+  "id" : 2,
+  "anneeVente" : 2019,
+  "utilisateur" : {
+    "id" : 0,
+    "nom" : "Dupont",
+    "prenom" : "Marcel",
+    "anneeNaissance" : 1950,
+    "adresse" : "1 rue des platanes",
+    "ville" : "Bordeaux",
+    "codePostal" : "33000"
+  },
+  "voiture" : {
+    "id" : 2,
+    "marque" : "Peugeot",
+    "modele" : "308",
+    "prix" : 10010.0,
+    "couleur" : "rose",
+    "anneeSortie" : 2001,
+    "gps" : false,
+    "climatisation" : true,
+    "photo" : "308.png",
+    "description" : "La PEUGEOT 308 vous revele sa forte personnalite des la premiere rencontre. Sa face avant expressive accueille en son centre le Lion Peugeot, et ses jantes Zyrcon 16 participent a son elegance. Pour sublimer son caractere, la berline compacte PEUGEOT 308 se dote d'une signature lumineuse integree dans des projecteurs halogenes.",
+    "quantiteRestante" : 3
+  },
+  "moyenPaiement" : "cb"
+} ]
