@@ -131,4 +131,12 @@ public class VoitureRepositoryInMemory implements VoitureRepository {
 	public Collection<Voiture> findPhotos() {
 		return photosVoitures.values();
 	}
+
+	@Override
+	public Voiture editVoiturePrixQuantite(Integer id, double prix, Integer quantiteRestante) {
+		Voiture v = findById(id);
+		v.setPrix(prix);
+		v.setQuantiteRestante(v.getQuantiteRestante()+quantiteRestante);
+		return v;
+	}
 }
