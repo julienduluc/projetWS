@@ -91,15 +91,19 @@ public class VoitureRepositoryInMemory implements VoitureRepository {
 	}
 
 
+	/** Peuple la Map photoVoitures :
+	 * clé : voitureId, valeur : Objet Voiture
+	 * la propriété photo contient la base64 de l'image de la voiture
+	 * 
+	 */
 	@Override
 	public void encodePhotoVoiture(Voiture vo) {
-		
+		String path = "src/main/resources/img/";
 		if (vo == null) {
 			voitures.forEach((v, k) -> {
-			File convFile = new File("src/main/resources/img/" + k.getPhoto());
+			File convFile = new File(path + k.getPhoto());
 			try {
-				byte[] fileContent;
-				fileContent = FileUtils.readFileToByteArray(convFile);
+				byte[] fileContent = FileUtils.readFileToByteArray(convFile);
 				String encodedString = Base64.getEncoder().encodeToString(fileContent);
 				Voiture newVoiture = new Voiture();
 				newVoiture.setPhoto(encodedString);
@@ -110,10 +114,9 @@ public class VoitureRepositoryInMemory implements VoitureRepository {
 			}	
 		});
 		} else {
-			File convFile = new File("src/main/resources/img/" + vo.getPhoto());
+			File convFile = new File(path + vo.getPhoto());
 			try {
-				byte[] fileContent;
-				fileContent = FileUtils.readFileToByteArray(convFile);
+				byte[] fileContent = FileUtils.readFileToByteArray(convFile);
 				String encodedString = Base64.getEncoder().encodeToString(fileContent);
 				Voiture newVoiture = new Voiture();
 				newVoiture.setPhoto(encodedString);

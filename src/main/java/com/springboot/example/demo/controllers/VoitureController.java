@@ -68,41 +68,39 @@ public class VoitureController {
         
     }
     
-
-    @PostMapping()
+    /**
+     * Méthode non exposée dans l'API car réservée aux admins
+     */
+    /*@PostMapping()
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Ajoute une voiture dans le catalogue")
     void addVoiture(@RequestBody Voiture voiture){
         this.voitureService.saveVoiture(voiture);
     }
+    */
     
-    @DeleteMapping("/{id}")
+    /**
+     * Méthode non exposée dans l'API car réservée aux admins
+     */
+    /*@DeleteMapping("/{id}")
     @ResponseBody
     @ApiOperation(value = "Supprime une voiture dans le catalogue")
     void deleteVoitureById(@PathVariable final int id){
     	ObjectMapper mapper = new ObjectMapper();
     	if (reloadListeVoiture(id)) {
     		this.voitureService.deleteVoiture(id);
-    	}
-    	try {
-			mapper.writerWithDefaultPrettyPrinter().writeValue(new File("datas/voitureOccasion.json"), voitureService.findAllVoitures());
-		} catch (JsonGenerationException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        
-    }
-       
-    @PatchMapping("/{id}")
+    	}       
+    }*/
+    
+    /**
+     * Méthode non exposée dans l'API car réservée aux admins
+     */
+    /*@PatchMapping("/{id}")
     @ResponseBody
     @ApiOperation(value = "Modifie le prix d'une voiture")
     Voiture patchVoiture(@PathVariable final int id, @RequestParam(value="prix", defaultValue="") String prix) {
         return this.voitureService.editVoiturePrix(id, prix);
-        
-    }
+    }*/
     
     boolean reloadListeVoiture(Integer id) {
     	List<Voiture> listeVoiture = new ArrayList<>();
