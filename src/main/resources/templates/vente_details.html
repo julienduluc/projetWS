@@ -2,15 +2,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link
-	href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="style.css">
-<title>Accueil Admin</title>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<title>MIAGe Concession - Admin</title>
 </head>
 <body style="background-color: #dddddd">
 	<nav class="navbar navbar-dark bg-dark">
@@ -22,61 +32,62 @@
 		</span>
 		</div>
 	</nav>
-	<div class="card">
+	<div class="container">
+	<h2>Consultation de la vente </h2>
 		<p>
-			<b>Infos Générales</b>
+			<h4>Infos Générales</h4>
 		</p>
 		<p>
-			Annee Vente : <span th:text="${vente.getAnneeVente()}"></span>
+			<b>Annee Vente : </b><span th:text="${vente.getAnneeVente()}"></span>
 		</p>
 		<p>
-			Moyen de Paiement : <span th:text="${vente.getMoyenPaiement()}"></span>
+			<b>Moyen de Paiement : </b><span th:text="${vente.getMoyenPaiement()}"></span>
 		</p>
 		<p>
-			<b>Infos Voiture</b>
+			<h4>Infos Voiture</h4>
 		</p>
 		<img class="img-fluid img-thumbnail" th:width="500px" th:src="@{'/img/'+ ${vente.getVoiture().getPhoto()}}">
 		<p>
-			Marque : <span th:text="${vente.getVoiture().getMarque()}"></span>
+			<b>Marque : </b><span th:text="${vente.getVoiture().getMarque()}"></span>
 		</p>
 		<p>
-			Modele : <span th:text="${vente.getVoiture().getModele()}"></span>
+			<b>Modele : </b><span th:text="${vente.getVoiture().getModele()}"></span>
 		</p>
 		<p>
-			Couleur : <span th:text="${vente.getVoiture().getCouleur()}"></span>
+			<b>Couleur : </b></b><span th:text="${vente.getVoiture().getCouleur()}"></span>
 		</p>
 		<p>
-			Prix : <span th:text="${vente.getVoiture().getPrix()}"> </span>
+			<b>Prix : </b><span th:text="${vente.getVoiture().getPrix()}"> </span>
 		</p>
 		<p>
-			Année de Sortie : <span
+			<b>Année de Sortie : </b><span
 				th:text="${vente.getVoiture().getAnneeSortie()}"></span>
 		</p>
 		<p>
-			GPS : <span th:text="${vente.getVoiture().isGps()}"></span>
+			<b>GPS : </b><span th:text="${vente.getVoiture().isGps()}"></span>
 		</p>
 		<p>
-			Climatisation : <span
+			<b>Climatisation : </b><span
 				th:text="${vente.getVoiture().isClimatisation()}"></span>
 		</p>
 		<p>
-			<b>Infos Acheteur</b>
+			<h4>Infos Acheteur</h4>
 		</p>
 		<p>
-			Nom : <span th:text="${vente.getUtilisateur().getNom()}"></span>
+			<b>Nom : </b><span th:text="${vente.getUtilisateur().getNom()}"></span>
 		</p>
 		<p>
-			Prénom : <span th:text="${vente.getUtilisateur().getPrenom()}"></span>
+			<b>Prénom : </b><span th:text="${vente.getUtilisateur().getPrenom()}"></span>
 		</p>
 		<p>
-			Annee de Naissance : <span
+			<b>Annee de Naissance : </b><span
 				th:text="${vente.getUtilisateur().getAnneeNaissance()}"></span>
 		</p>
 		<p>
-			Adresse : <span
+			<b>Adresse : </b><span
 				th:text="${vente.getUtilisateur().getAdresse()} + ${vente.getUtilisateur().getCodePostal()} + ${vente.getUtilisateur().getVille()}"></span>
 		</p>
-		<a th:href="@{'~/admin/ventes'}"> <input type="button"
+		<a th:href="@{'~/admin/ventes'}"> <input class="btn btn-danger" type="button"
 			value="Retour">
 		</a>
 
