@@ -66,6 +66,9 @@ public class VoitureControllerAdmin {
 		return "voitures_create";
 	}
 
+	/**
+	 * Code expliqué dans le document : Infos sur le code - Dysfonctionnements recencés
+	 */
 	@PostMapping("/create")
 	public String createVoitureSubmit(@ModelAttribute Voiture voiture, @RequestParam("file") MultipartFile file)
 			throws JsonProcessingException {
