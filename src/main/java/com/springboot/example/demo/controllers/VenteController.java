@@ -1,8 +1,6 @@
 package com.springboot.example.demo.controllers;
 
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,12 +41,6 @@ public class VenteController {
         return this.venteService.getVenteById(id);
     }
 
-    /*@GetMapping()
-    @ApiOperation(value = "Récupère toutes les ventes")
-    Collection<Vente> getAllVentes() {
-        return this.venteService.findAllVentes();
-    }*/
-
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Ajoute une vente")
@@ -64,39 +55,47 @@ public class VenteController {
 	        return this.venteService.saveVente(vente);
     	}
     	return null;
-    	
-      /*  ObjectMapper mapper = new ObjectMapper();
-        try {
-			mapper.writerWithDefaultPrettyPrinter().writeValue(new File("datas/ventes.json"), this.venteService.getAllVentes());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
     }
    
+    /**
+     * Méthode non exposée dans l'API car réservée aux admins
+     */
+    /*
     @GetMapping(value = "/marque/{marque}")
     @ApiOperation(value = "Récupère les ventes d'une marque")
     Collection<Vente> getVentesByMarque(@PathVariable final String marque) {
         return this.venteService.getVentesByMarque(marque);
-    }
+    }*/
     
+    /**
+     * Méthode non exposée dans l'API car réservée aux admins
+     */
+    /*
     @GetMapping(value = "/annee/{annee}")
     @ApiOperation(value = "Récupère les ventes d'une année")
     Collection<Vente> getVentesByAnnee(@PathVariable final Integer annee) {
         return this.venteService.getVentesByAnnee(annee);
-    }
+    }*/
     
+        /**
+     * Méthode non exposée dans l'API car réservée aux admins
+     */
+    /*
     @GetMapping(value = "/chiffre_affaire/{annee}")
     @ApiOperation(value = "Récupère le chiffre d'affaire d'une année")
     double getTotalCAByAnnee(@PathVariable final Integer annee) {
         return this.venteService.getTotalCAByAnnee(annee);
-    }
+    }*/
     
+        /**
+     * Méthode non exposée dans l'API car réservée aux admins
+     */
+    /*
     @GetMapping()
     @ApiOperation(value = "Filtre les ventes par marque et par année")
     Collection<Vente> rechercheVentes(@RequestParam(value="marque", defaultValue="") String marque,
     		@RequestParam(value="annee", defaultValue="2019") String annee) {
         return this.venteService.rechercheVentes(marque, annee);
-    }
+    }*/
     
 }

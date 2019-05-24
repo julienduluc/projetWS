@@ -12,7 +12,10 @@ import com.springboot.example.demo.config.RoutesApi;
 import com.springboot.example.demo.entities.Vente;
 import com.springboot.example.demo.services.VenteServiceImpl;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @Controller
+@ApiIgnore
 @RequestMapping(RoutesApi.BASE_URL_VENTES_ADMIN)
 public class VenteControllerAdmin {
 

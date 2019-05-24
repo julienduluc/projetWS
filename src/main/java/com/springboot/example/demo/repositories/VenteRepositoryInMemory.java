@@ -1,5 +1,6 @@
 package com.springboot.example.demo.repositories;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -8,6 +9,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.example.demo.entities.Vente;
 import com.springboot.example.demo.entities.Voiture;
 
@@ -40,6 +42,7 @@ public class VenteRepositoryInMemory implements VenteRepository {
 		vente.setId(i);
 		this.ventes.put(i, vente);
 		decrementeQuantiteRestante(vente.getVoiture());
+		writeDataInJson();
 		return vente;
 
 	}
@@ -55,6 +58,7 @@ public class VenteRepositoryInMemory implements VenteRepository {
 	@Override
 	public void deleteVente(int id) {
 		ventes.remove(id);
+		writeDataInJson();
 	}
 
 
@@ -121,4 +125,13 @@ public class VenteRepositoryInMemory implements VenteRepository {
 		i -= 1 ;
 		voiture.setQuantiteRestante(i);
 	}	
+	
+	public void writeDataInJson() {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("datas/ventes.json"), ventes.values());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }        
+	}
 }

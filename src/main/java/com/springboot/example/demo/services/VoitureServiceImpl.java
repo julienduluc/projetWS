@@ -49,21 +49,6 @@ public class VoitureServiceImpl implements VoitureService {
 			return voitureRepository.rechercheVoitures(marque, modele, prixMin, prixMax);
 		}
 
-		@Override
-		public Voiture editVoiturePrix(int id, double prix) {
-			return voitureRepository.editVoiturePrix(id, prix);
-		}
-
-		@Override
-		public Voiture editVoiturePrix(int id, String prix) {
-			return voitureRepository.editVoiturePrix(id, prix);
-		}
-
-		@Override
-		public Voiture deleteVoiture(int id) {
-			//demerde toi gros con
-			return null;
-		}
 
 		@Override
 		public Collection<Voiture> findPhotos() {

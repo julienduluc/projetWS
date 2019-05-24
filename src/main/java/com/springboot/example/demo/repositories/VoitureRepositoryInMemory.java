@@ -12,7 +12,7 @@ import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Repository;
 
-import com.springboot.example.demo.entities.Vente;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.example.demo.entities.Voiture;
 
 @Repository
@@ -43,7 +43,7 @@ public class VoitureRepositoryInMemory implements VoitureRepository {
 		voiture.setId(i);
 		encodePhotoVoiture(voiture);
 		this.voitures.put(i, voiture);
-		
+		writeDataInJson();
 		return voiture;
 	}
 
@@ -57,7 +57,8 @@ public class VoitureRepositoryInMemory implements VoitureRepository {
 
 	@Override
 	public void deleteVoiture(int id) {
-		voitures.remove(id);		
+		voitures.remove(id);
+		writeDataInJson();
 	}
 
 	@Override
@@ -74,32 +75,19 @@ public class VoitureRepositoryInMemory implements VoitureRepository {
 		return liste.values();
 	}
 
-
-	@Override
-	public Voiture editVoiturePrix(Integer id, String prix) {
-		Voiture v = findById(id);
-		v.setPrix(Double.parseDouble(prix));
-		return v;
-	}
-
-
-	@Override
-	public Voiture editVoiturePrix(Integer id, double prix) {
-		Voiture v = findById(id);
-		v.setPrix(prix);
-		return v;
-	}
-
-
+	/** Peuple la Map photoVoitures :
+	 * clé : voitureId, valeur : Objet Voiture
+	 * la propriété photo contient la base64 de l'image de la voiture
+	 * 
+	 */
 	@Override
 	public void encodePhotoVoiture(Voiture vo) {
-		
+		String path = "src/main/resources/img/";
 		if (vo == null) {
 			voitures.forEach((v, k) -> {
-			File convFile = new File("src/main/resources/img/" + k.getPhoto());
+			File convFile = new File(path + k.getPhoto());
 			try {
-				byte[] fileContent;
-				fileContent = FileUtils.readFileToByteArray(convFile);
+				byte[] fileContent = FileUtils.readFileToByteArray(convFile);
 				String encodedString = Base64.getEncoder().encodeToString(fileContent);
 				Voiture newVoiture = new Voiture();
 				newVoiture.setPhoto(encodedString);
@@ -110,10 +98,9 @@ public class VoitureRepositoryInMemory implements VoitureRepository {
 			}	
 		});
 		} else {
-			File convFile = new File("src/main/resources/img/" + vo.getPhoto());
+			File convFile = new File(path + vo.getPhoto());
 			try {
-				byte[] fileContent;
-				fileContent = FileUtils.readFileToByteArray(convFile);
+				byte[] fileContent = FileUtils.readFileToByteArray(convFile);
 				String encodedString = Base64.getEncoder().encodeToString(fileContent);
 				Voiture newVoiture = new Voiture();
 				newVoiture.setPhoto(encodedString);
@@ -137,6 +124,16 @@ public class VoitureRepositoryInMemory implements VoitureRepository {
 		Voiture v = findById(id);
 		v.setPrix(prix);
 		v.setQuantiteRestante(v.getQuantiteRestante()+quantiteRestante);
+		writeDataInJson();
 		return v;
+	}
+	
+	public void writeDataInJson() {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("datas/voitures.json"), voitures.values());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }        
 	}
 }
