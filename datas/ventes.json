@@ -50,4 +50,56 @@
     "quantiteRestante" : 3
   },
   "moyenPaiement" : "cb"
+}, {
+  "id" : 3,
+  "anneeVente" : 2019,
+  "utilisateur" : {
+    "id" : 0,
+    "nom" : "string",
+    "prenom" : "string",
+    "anneeNaissance" : 0,
+    "adresse" : "string",
+    "ville" : "string",
+    "codePostal" : "string"
+  },
+  "voiture" : {
+    "id" : 4,
+    "marque" : "Subaru",
+    "modele" : "Impreza",
+    "prix" : 87000.0,
+    "couleur" : "bleu et jaune",
+    "anneeSortie" : 1998,
+    "gps" : false,
+    "climatisation" : false,
+    "photo" : "Impreza.png",
+    "description" : "Icone de la marque grace a ses succes en championnat du monde des rallyes (trois titres pilotes et trois titres constructeurs), elle en est a sa cinquieme generation depuis 2016",
+    "quantiteRestante" : 0
+  },
+  "moyenPaiement" : "string"
+}, {
+  "id" : 4,
+  "anneeVente" : 2019,
+  "utilisateur" : {
+    "id" : 0,
+    "nom" : "string",
+    "prenom" : "string",
+    "anneeNaissance" : 0,
+    "adresse" : "string",
+    "ville" : "string",
+    "codePostal" : "string"
+  },
+  "voiture" : {
+    "id" : 4,
+    "marque" : "Subaru",
+    "modele" : "Impreza",
+    "prix" : 87000.0,
+    "couleur" : "bleu et jaune",
+    "anneeSortie" : 1998,
+    "gps" : false,
+    "climatisation" : false,
+    "photo" : "Impreza.png",
+    "description" : "Icone de la marque grace a ses succes en championnat du monde des rallyes (trois titres pilotes et trois titres constructeurs), elle en est a sa cinquieme generation depuis 2016",
+    "quantiteRestante" : 0
+  },
+  "moyenPaiement" : "string"
 } ]

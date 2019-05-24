@@ -136,4 +136,12 @@ public class VoitureRepositoryInMemory implements VoitureRepository {
             e.printStackTrace();
         }        
 	}
+
+
+	@Override
+	public void editQuantite(Voiture v, Integer quantiteRestante) {
+		v.setQuantiteRestante(quantiteRestante);
+		writeDataInJson();
+		
+	}
 }

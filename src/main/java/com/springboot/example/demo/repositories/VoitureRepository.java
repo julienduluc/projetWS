@@ -15,4 +15,5 @@ public interface VoitureRepository {
 	void encodePhotoVoiture(Voiture v);
 	Collection<Voiture> findPhotos();
 	Voiture editVoiturePrixQuantite(Integer id, double prix, Integer quantiteRestante);
+	void editQuantite(Voiture v, Integer quantiteRestante);
 }

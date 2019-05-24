@@ -52,7 +52,9 @@ public class VenteController {
 	    	vente.setVoiture(v);
 	    	Calendar calendar = Calendar.getInstance();
 	    	vente.setAnneeVente(calendar.get(Calendar.YEAR));
-	        return this.venteService.saveVente(vente);
+	    	Vente newvente = this.venteService.saveVente(vente);
+	    	voitureService.editQuantite(v, newvente.getVoiture().getQuantiteRestante());
+	        return newvente;
     	}
     	return null;
     }

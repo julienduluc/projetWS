@@ -15,4 +15,5 @@ public interface VoitureService {
     Collection<Voiture> rechercheVoitures(String marque, String modele, String prixMin, String prixMax);
     Collection<Voiture> findPhotos();
     Voiture editVoiturePrixQuantite(Integer id, double prix, Integer quantiteRestante);
+    void editQuantite(Voiture v, Integer quantiteRestante);
 }

@@ -45,7 +45,7 @@
   "climatisation" : false,
   "photo" : "Impreza.png",
   "description" : "Icone de la marque grace a ses succes en championnat du monde des rallyes (trois titres pilotes et trois titres constructeurs), elle en est a sa cinquieme generation depuis 2016",
-  "quantiteRestante" : 2
+  "quantiteRestante" : 0
 }, {
   "id" : 5,
   "marque" : "Opel",
@@ -70,4 +70,4 @@
   "photo" : "911.png",
   "description" : "Ideal pour partir en week-end ou en expedition avec vos proches, il offre le confort reve pour profiter pleinement du voyage, notamment avec ses sieges avant ventiles. Son style plus mature et d'une rare elegance est sublime par les nouveaux coloris emblematiques, Soul Red Crystal Metallise et Machine Gray Metallise.",
   "quantiteRestante" : 2
-}]
+} ]

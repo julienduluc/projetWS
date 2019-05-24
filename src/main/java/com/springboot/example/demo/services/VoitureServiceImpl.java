@@ -58,6 +58,11 @@ public class VoitureServiceImpl implements VoitureService {
 		public Voiture editVoiturePrixQuantite(Integer id, double prix, Integer quantiteRestante) {
 			return voitureRepository.editVoiturePrixQuantite(id, prix,quantiteRestante);
 			
+		}
+
+		@Override
+		public void editQuantite(Voiture v, Integer quantiteRestante) {
+			voitureRepository.editQuantite(v, quantiteRestante);			
 		}	   
 		
 }

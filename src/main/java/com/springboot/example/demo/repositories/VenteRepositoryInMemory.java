@@ -39,9 +39,9 @@ public class VenteRepositoryInMemory implements VenteRepository {
 	@Override
 	public Vente saveVente(Vente vente) {
 		int i = ventes.size() + 1;
-		vente.setId(i);
-		this.ventes.put(i, vente);
+		vente.setId(i);		
 		decrementeQuantiteRestante(vente.getVoiture());
+		this.ventes.put(i, vente);
 		writeDataInJson();
 		return vente;
 

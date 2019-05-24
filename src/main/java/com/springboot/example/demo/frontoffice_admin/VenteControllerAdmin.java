@@ -42,11 +42,4 @@ public class VenteControllerAdmin {
 		model.addAttribute("vente", v);
 		return "vente_details";
 	}
-
-	/*@PostMapping("/create")
-    public String createVoiture(@RequestParam("file") MultipartFile file) throws JsonProcessingException  {
-
-        return "redirect:/admin/voitures";
-    }*/
-
 }
