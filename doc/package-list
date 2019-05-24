@@ -1,0 +1,8 @@
+com.springboot.example.demo
+com.springboot.example.demo.bootstrap
+com.springboot.example.demo.config
+com.springboot.example.demo.controllers
+com.springboot.example.demo.entities
+com.springboot.example.demo.frontoffice_admin
+com.springboot.example.demo.repositories
+com.springboot.example.demo.services
